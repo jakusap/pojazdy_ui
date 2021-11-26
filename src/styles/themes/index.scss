@@ -1,0 +1,239 @@
+@import 'avalon';
+
+:root {
+
+  /*   ---   ###   COLORS   ###   ---   */
+
+  --blue-color: #324157;
+  --blue-color-hover: #324157;
+  --blue-color-active: #324157;
+  --blue-color-disabled: #324157;
+  --blue-background: #324157;
+  --blue-background-hover: #324157;
+  --blue-background-active: #324157;
+  --blue-background-disabled: #324157;
+  --blue-border: #324157;
+  --blue-border-hover: #324157;
+  --blue-border-active: #324157;
+  --blue-border-disabled: #324157;
+
+  --light-blue-color: #bfcbd9;
+  --light-blue-color-hover: #bfcbd9;
+  --light-blue-color-active: #bfcbd9;
+  --light-blue-color-disabled: #bfcbd9;
+  --light-blue-background: #bfcbd9;
+  --light-blue-background-hover: #bfcbd9;
+  --light-blue-background-active: #bfcbd9;
+  --light-blue-background-disabled: #bfcbd9;
+  --light-blue-border: #bfcbd9;
+  --light-blue-border-hover: #bfcbd9;
+  --light-blue-border-active: #bfcbd9;
+  --light-blue-border-disabled: #bfcbd9;
+
+  --red-color: #c03639;
+  --red-color-hover: #c03639;
+  --red-color-active: #c03639;
+  --red-color-disabled: #c03639;
+  --red-background: #c03639;
+  --red-background-hover: #c03639;
+  --red-background-active: #c03639;
+  --red-background-disabled: #c03639;
+  --red-border: #c03639;
+  --red-border-hover: #c03639;
+  --red-border-active: #c03639;
+  --red-border-disabled: #c03639;
+
+  --green-color: #30b08f;
+  --green-color-hover: #30b08f;
+  --green-color-active: #30b08f;
+  --green-color-disabled: #30b08f;
+  --green-background: #30b08f;
+  --green-background-hover: #30b08f;
+  --green-background-active: #30b08f;
+  --green-background-disabled: #30b08f;
+  --green-border: #30b08f;
+  --green-border-hover: #30b08f;
+  --green-border-active: #30b08f;
+  --green-border-disabled: #30b08f;
+
+  --light-green-color: #c1faa3;
+  --light-green-color-hover: #c1faa3;
+  --light-green-color-active: #c1faa3;
+  --light-green-color-disabled: #c1faa3;
+  --light-green-background: #c1faa3;
+  --light-green-background-hover: #c1faa3;
+  --light-green-background-active: #c1faa3;
+  --light-green-background-disabled: #c1faa3;
+  --light-green-border: #c1faa3;
+  --light-green-border-hover: #c1faa3;
+  --light-green-border-active: #c1faa3;
+  --light-green-border-disabled: #c1faa3;
+
+
+  --orange-color: #e6a23c;
+  --orange-color-hover: #e6a23c;
+  --orange-color-active: #e6a23c;
+  --orange-color-disabled: #e6a23c;
+  --orange-background: #e6a23c;
+  --orange-background-hover: #e6a23c;
+  --orange-background-active: #e6a23c;
+  --orange-background-disabled: #e6a23c;
+  --orange-border: #e6a23c;
+  --orange-border-hover: #e6a23c;
+  --orange-border-active: #e6a23c;
+  --orange-border-disabled: #e6a23c;
+
+  --light-orange-color: #f7f7c3;
+  --light-orange-color-hover: #f7f7c3;
+  --light-orange-color-active: #f7f7c3;
+  --light-orange-color-disabled: #f7f7c3;
+  --light-orange-background: #f7f7c3;
+  --light-orange-background-hover: #f7f7c3;
+  --light-orange-background-active: #f7f7c3;
+  --light-orange-background-disabled: #f7f7c3;
+  --light-orange-border: #f7f7c3;
+  --light-orange-border-hover: #f7f7c3;
+  --light-orange-border-active: #f7f7c3;
+  --light-orange-border-disabled: #f7f7c3;
+
+  --white-color: #ffffff;
+  --white-color-hover: #ffffff;
+  --white-color-active: #ffffff;
+  --white-color-disabled: #ffffff;
+  --white-background: #ffffff;
+  --white-background-hover: #ffffff;
+  --white-background-active: #ffffff;
+  --white-background-disabled: #ffffff;
+  --white-border: #ffffff;
+  --white-border-hover: #ffffff;
+  --white-border-active: #ffffff;
+  --white-border-disabled: #ffffff;
+
+  --smoke-white-color: #f5f5f5;
+  --smoke-white-color-hover: #f5f5f5;
+  --smoke-white-color-active: #f5f5f5;
+  --smoke-white-color-disabled: #f5f5f5;
+  --smoke-white-background: #f5f5f5;
+  --smoke-white-background-hover: #f5f5f5;
+  --smoke-white-background-active: #f5f5f5;
+  --smoke-white-background-disabled: #f5f5f5;
+  --smoke-white-border: #f5f5f5;
+  --smoke-white-border-hover: #f5f5f5;
+  --smoke-white-border-active: #f5f5f5;
+  --smoke-white-border-disabled: #f5f5f5;
+
+  --dark-gray-color: #464646;
+  --dark-gray-color-hover: #464646;
+  --dark-gray-color-active: #464646;
+  --dark-gray-color-disabled: #464646;
+  --dark-gray-background: #464646;
+  --dark-gray-background-hover: #464646;
+  --dark-gray-background-active: #464646;
+  --dark-gray-background-disabled: #464646;
+  --dark-gray-border: #464646;
+  --dark-gray-border-hover: #464646;
+  --dark-gray-border-active: #464646;
+  --dark-gray-border-disabled: #464646;
+
+  --gray-color: #888888;
+  --gray-color-hover: #888888;
+  --gray-color-active: #888888;
+  --gray-color-disabled: #888888;
+  --gray-background: #888888;
+  --gray-background-hover: #888888;
+  --gray-background-active: #888888;
+  --gray-background-disabled: #888888;
+  --gray-border: #888888;
+  --gray-border-hover: #888888;
+  --gray-border-active: #888888;
+  --gray-border-disabled: #888888;
+
+  --light-gray-color: #eee;
+  --light-gray-color-hover: #eee;
+  --light-gray-color-active: #eee;
+  --light-gray-color-disabled: #eee;
+  --light-gray-background: #eee;
+  --light-gray-background-hover: #eee;
+  --light-gray-background-active: #eee;
+  --light-gray-background-disabled: #eee;
+  --light-gray-border: #eee;
+  --light-gray-border-hover: #eee;
+  --light-gray-border-active: #eee;
+  --light-gray-border-disabled: #eee;
+
+  --dirty-white-color: #dfe6ec;
+  --dirty-white-color-hover: #dfe6ec;
+  --dirty-white-color-active: #dfe6ec;
+  --dirty-white-color-disabled: #dfe6ec;
+  --dirty-white-background: #dfe6ec;
+  --dirty-white-background-hover: #dfe6ec;
+  --dirty-white-background-active: #dfe6ec;
+  --dirty-white-background-disabled: #dfe6ec;
+  --dirty-white-border: #dfe6ec;
+  --dirty-white-border-hover: #dfe6ec;
+  --dirty-white-border-active: #dfe6ec;
+  --dirty-white-border-disabled: #dfe6ec;
+
+  --light-white-color: rgba(223, 230, 236, 0.2);
+  --light-white-color-hover: rgba(223, 230, 236, 0.2);
+  --light-white-color-active: rgba(223, 230, 236, 0.2);
+  --light-white-color-disabled: rgba(223, 230, 236, 0.2);
+  --light-white-background: rgba(223, 230, 236, 0.2);
+  --light-white-background-hover: rgba(223, 230, 236, 0.2);
+  --light-white-background-active: rgba(223, 230, 236, 0.2);
+  --light-white-background-disabled: rgba(223, 230, 236, 0.2);
+  --light-white-border: rgba(223, 230, 236, 0.2);
+  --light-white-border-hover: rgba(223, 230, 236, 0.2);
+  --light-white-border-active: rgba(223, 230, 236, 0.2);
+  --light-white-border-disabled: rgba(223, 230, 236, 0.2);
+
+  --brand-gray-color: #2b2d2f;
+  --brand-gray-color-hover: #2b2d2f;
+  --brand-gray-color-active: #2b2d2f;
+  --brand-gray-color-disabled: #2b2d2f;
+  --brand-gray-background: #2b2d2f;
+  --brand-gray-background-hover: #2b2d2f;
+  --brand-gray-background-active: #2b2d2f;
+  --brand-gray-background-disabled: #2b2d2f;
+  --brand-gray-border: #2b2d2f;
+  --brand-gray-border-hover: #2b2d2f;
+  --brand-gray-border-active: #2b2d2f;
+  --brand-gray-border-disabled: #2b2d2f;
+
+  --brand-yellow-color: #eeba11;
+  --brand-yellow-color-hover: #eeba11;
+  --brand-yellow-color-active: #eeba11;
+  --brand-yellow-color-disabled: #eeba11;
+  --brand-yellow-background: #eeba11;
+  --brand-yellow-background-hover: #eeba11;
+  --brand-yellow-background-active: #eeba11;
+  --brand-yellow-background-disabled: #eeba11;
+  --brand-yellow-border: #eeba11;
+  --brand-yellow-border-hover: #eeba11;
+  --brand-yellow-border-active: #eeba11;
+  --brand-yellow-border-disabled: #eeba11;
+
+  --black-color: #000;
+  --black-color-hover: #000;
+  --black-color-active: #000;
+  --black-color-disabled: #000;
+  --black-background: #000;
+  --black-background-hover: #000;
+  --black-background-active: #000;
+  --black-background-disabled: #000;
+  --black-border: #000;
+  --black-border-hover: #000;
+  --black-border-active: #000;
+  --black-border-disabled: #000;
+
+  /*   ---   ###   SHADOWS   ###   ---   */
+
+  --box-shadow-low: 0 1px 4px rgba(0, 21, 41, 0.08);
+  --box-shadow-medium: 2px 2px 6px 1px rgba(0, 0, 0, 0.15);
+  --box-shadow-high: 0px 4px 8px 2px rgba(#000000, 0.1);
+  --box-shadow-extra-high: 0px 0px 10px 1px #888888;
+
+  /*   ---   ###   FONTS   ###   ---   */
+
+  --font-family: 'Poppins';
+}

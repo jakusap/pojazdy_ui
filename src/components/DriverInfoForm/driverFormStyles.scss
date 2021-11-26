@@ -1,0 +1,44 @@
+.form-group {
+  margin-bottom: 22px;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  &:last-child {
+    border-bottom: unset;
+  }
+  .form-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 11px;
+    .form-group-title {
+      color: var(--brand-gray-color);
+      font-size: 18px;
+      margin-top: 0;
+    }
+  }
+  .form-group-content {
+    .row-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+  &.dark-theme {
+    .form-group-header {
+      .form-group-title {
+        color: var(--light-gray-color);
+      }
+    }
+  }
+}
+
+.share-personal-info-data {
+  color: var(--brand-gray-color);
+  margin: 22px 11px;
+
+  &.dark-theme {
+    color: var(--white-color);
+  }
+}
+

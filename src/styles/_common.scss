@@ -1,0 +1,54 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.more-actions {
+  z-index: 9999;
+  font-size: 22px;
+  background: none;
+  border: 0;
+  transition: 0.3s all ease-out;
+  border-radius: 16px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(80, 79, 79);
+    color: var(--white-color-hover);
+  }
+}
+
+.el-input {
+  & ::placeholder {
+    color: var(--gray-color);
+  }
+}
+
+.el-input.is-disabled {
+  & .el-input__inner {
+    color: var(--gray-color);
+  }
+}
+.el-radio {
+  font-weight: 700;
+}
+
+.el-radio__input.is-disabled {
+  + span.el-radio__label {
+    color: var(--gray-color);
+  }
+}
+.icon-warning {
+  color: var(--red-color);
+}
+.icon-success {
+  color: var(--green-color);
+}
+.icon-info {
+  color: var(--light-blue-color);
+}
+
+hr {
+  border: 1px solid var(--light-blue-border);
+  background: var(--light-blue-background);
+}

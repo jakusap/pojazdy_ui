@@ -1,0 +1,66 @@
+<template>
+  <div class="">
+    <h1 class="cars__title">
+      {{ $t('Cars.cars_title') }}
+      <el-button v-if="mobile" size="mini" type="info" @click="showSettings()">
+        <i class="el-icon-setting" />
+      </el-button>
+    </h1>
+    <div id="settings" class="table__settings">
+      <el-input v-model="filters.driver" :placeholder="$t('driver')" clearable class="cars__filter-item" />
+      <el-input
+        v-model="filters.carMakeModel"
+        :placeholder="$t('DocumentsWizard.formLabels.make_model')"
+        clearable
+        class="cars__filter-item"
+      />
+      <el-input
+        v-model="filters.registrationNumber"
+        :placeholder="$t('DocumentsWizard.formLabels.registrationNumber')"
+        clearable
+        class="cars__filter-item"
+      />
+      <el-input
+        v-model="filters.carVin"
+        :placeholder="$t('DocumentsWizard.formLabels.identificationNumber_tooltip')"
+        clearable
+        class="cars__filter-item"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    filters: {
+      type: Object,
+    },
+  },
+  methods: {
+    showSettings() {
+      document.getElementById('settings').classList.toggle('active');
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.cars {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__filter-item {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 576px) {
+  .cars {
+    &__filter-item {
+      width: 180px;
+    }
+  }
+}
+</style>
