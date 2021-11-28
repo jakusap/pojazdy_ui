@@ -132,7 +132,11 @@ export default {
           this.setViewLoading(true);
           editServicePlan(editedServicePlan).then((response) => {
             if (response.ok) {
-              this.$message({ message: this.$t('AddServicePlan.edit_servicePlan_success'), type: 'success', center: true });
+              this.$message({
+                message: this.$t('AddServicePlan.edit_servicePlan_success'),
+                type: 'success',
+                center: true,
+              });
               this.toggleEdit();
               this.getServicePlanDetails();
             } else {

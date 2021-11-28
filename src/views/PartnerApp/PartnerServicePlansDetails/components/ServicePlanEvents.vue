@@ -27,11 +27,22 @@
         />
       </el-table-column>
     </el-table>
+
+    <div class="buttons">
+      <el-button-group>
+        <el-button type="primary" class="cars__action" @click="showAddServiceEventModal()">
+          {{ $t('AddServiceEvent.add_serviceEvent') }}
+        </el-button>
+      </el-button-group>
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+
+import AddServiceEvent from '@/effects/AddServiceEvent';
 
 export default {
   data() {
@@ -61,6 +72,12 @@ export default {
   methods: {
     ...mapActions('app', ['toggleDataLoading']),
     ...mapActions('servicePlansDetailsStore', ['getServicePlanDetails', 'setViewLoading']),
+    toggleEdit(row) {
+      alert(row);
+    },
+    showAddServiceEventModal() {
+      this.$modalOn(AddServiceEvent);
+    },
   },
 };
 </script>

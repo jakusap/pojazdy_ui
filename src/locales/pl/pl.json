@@ -47,6 +47,14 @@
     "edit_servicePlan_success": "Poprawnie zmodyfikowano plan serwisowy",
     "edit_servicePlan_failed": "Nie udało się zmodyfikować planu serwisowego"
   },
+  "AddServiceEvent": {
+    "add_serviceEvent": "Dodaj zdarzenie serwisowe",
+    "add_serviceEvent_failed": "Nie udało się dodać nowego zdarzenia serwisowego, spróbuj ponownie.",
+    "add_serviceEvent_success": "Poprawnie dodano nowe zdarzenie serwisowe.",
+    "get_serviceEvent_failed": "Nie udało się pobrać listy zdarzeń serwisowych",
+    "edit_serviceEvent_success": "Poprawnie zmodyfikowano zdarzenie serwisowy",
+    "edit_serviceEvent_failed": "Nie udało się zmodyfikować zdarzenia serwisowego"
+  },
   "AddCarUser": {
     "active_car_user": "Pojazd obecnie użytkowany przez kierowcę: ",
     "car_not_dropped_off": "Nie zarejestrowano przekazania samochodu przez poprzedniego użytkownika",

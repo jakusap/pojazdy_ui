@@ -6,23 +6,16 @@ export const getPartnerServiceEventsList = () =>
     method: 'get',
   });
 
-// export const getSpecificServicePlan = (car) =>
-//   request({
-//     url: `/api/service_plans/specificServicePlan`,
-//     method: 'get',
-//     data: car,
-//   });
-//
-// export const addServicePlan = (servicePlan) =>
-//   request({
-//     url: `/api/service_plans/`,
-//     method: 'post',
-//     data: servicePlan,
-//   });
-//
-// export const editServicePlan = (servicePlanId, servicePlan) =>
-//   request({
-//     url: `/api/service_plans/update/${servicePlanId}`,
-//     method: 'put',
-//     data: servicePlan,
-//   });
+export const addServiceEvent = (servicePlanId, servicePlan) =>
+  request({
+    url: `/api/service_events/insertEvent/${servicePlanId}`,
+    method: 'post',
+    data: servicePlan,
+  });
+
+export const editServicePlan = (orderNumber, serviceEvent) =>
+  request({
+    url: `/api/service_events/update/${orderNumber}`,
+    method: 'put',
+    data: serviceEvent,
+  });
