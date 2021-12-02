@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div>
     <el-dialog :visible.sync="dialogVisible" width="30%" center>
       <span>{{ $t('ServicePlans.confirm_delete') }}</span>
@@ -46,17 +45,3 @@ export default {
 </script>
 
 <style scoped></style>
-=======
-$END$
-</template>
-
-<script>
-export default {
-name: "DialogWindow"
-}
-</script>
-
-<style scoped>
-
-</style>
->>>>>>> master

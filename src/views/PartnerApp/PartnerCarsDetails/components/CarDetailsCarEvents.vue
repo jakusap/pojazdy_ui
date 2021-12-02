@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="event-list">
     <el-table :data="paginatedData" :empty-text="$t('CarEvents.no_carEvents_placeholder')">
       <el-table-column :label="$t('DocumentsWizard.formLabels.name')" min-width="60px" align="center">
@@ -188,17 +187,3 @@ export default {
   margin: 10px 0 10px 16px;
 }
 </style>
-=======
-$END$
-</template>
-
-<script>
-export default {
-name: "CarDetailsCarEvents"
-}
-</script>
-
-<style scoped>
-
-</style>
->>>>>>> master

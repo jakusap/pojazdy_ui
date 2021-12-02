@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <DataWrapper>
     <div slot="table-body" class="event-list">
       <el-table :data="paginatedData" :empty-text="$t('Cars.no_cars_placeholder')">
@@ -135,17 +134,3 @@ export default {
   margin-top: 10px;
 }
 </style>
-=======
-$END$
-</template>
-
-<script>
-export default {
-name: "ServicePLanCars"
-}
-</script>
-
-<style scoped>
-
-</style>
->>>>>>> master
