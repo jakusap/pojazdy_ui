@@ -1,12 +1,12 @@
 <template>
   <div v-if="!mobile" class="el-row">
     <el-form-item :label="$t('DocumentsWizard.formLabels.servicePlan_name')" prop="name">
-      <el-input v-model="addCarForm.servicePlanName" type="textarea" class="new-transaction__input--large" />
+      <el-input v-model="addCarForm.servicePlanName" class="new-transaction__input--large" />
     </el-form-item>
   </div>
   <div v-else-if="mobile" class="mobile-div">
     <el-form-item :label="$t('DocumentsWizard.formLabels.servicePlan_name')" prop="name">
-      <el-input v-model="addCarForm.servicePlanName" type="textarea" class="new-transaction__input--large" />
+      <el-input v-model="addCarForm.servicePlanName" class="new-transaction__input--large" />
     </el-form-item>
   </div>
 </template>

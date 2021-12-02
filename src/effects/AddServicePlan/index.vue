@@ -52,8 +52,6 @@ export default {
         isActive: true,
       },
       rules: {
-        carMake: [{ required: true, message: this.$t('validation.car_make_required') }],
-        carModel: [{ required: true, message: this.$t('validation.car_model_required') }],
         servicePlanName: [{ max: 50, message: this.$t('validation.car_description_max') }],
       },
     };

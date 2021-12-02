@@ -1,58 +1,79 @@
 <template>
   <div v-if="!mobile" class="el-row">
-    <el-form-item :label="$t('DocumentsWizard.formLabels.vehicle')" prop="carId">
-      <el-select v-model="addCarEventForm.carId" filterable>
-        <el-option
-          v-for="(car, id) in carsList"
-          :key="id"
-          :value="car.carId"
-          :label="car.carMake + ' ' + car.registrationNumber + ' ' + car.carVin"
-        >
-          <div class="">
-            {{ car.carMake }}
-            {{ car.carModel }}
-            {{ car.registrationNumber }}
-            {{ car.carVin }}
-          </div>
-        </el-option>
-      </el-select>
-    </el-form-item>
-    <el-form-item :label="$t('DocumentsWizard.formLabels.driver')" prop="carUserId">
-      <el-select v-model="addCarEventForm.carUserId" filterable>
-        <el-option
-          v-for="(car, id) in carsList"
-          :key="id"
-          :value="car.carId"
-          :label="car.driver.firstName + ' ' + car.driver.lastName"
-        >
-          <div class="">
-            {{ car.carMake }}
-            {{ car.carModel }}
-            {{ car.registrationNumber }}
-            {{ car.carVin }}
-          </div>
-        </el-option>
-      </el-select>
-    </el-form-item>
-  </div>
-  <div v-else-if="mobile">
-    <div class="">
-      <el-form-item :label="$t('DocumentsWizard.formLabels.vehicle')" prop="carId">
-        <el-select v-model="addCarEventForm.carId" filterable>
+    <div>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.driver')" prop="carUserId">
+        <el-select v-model="addCarEventForm.carUserId" filterable>
           <el-option
             v-for="(car, id) in carsList"
             :key="id"
-            :value="car.carId"
-            :label="car.carMake + ' ' + car.registrationNumber + ' ' + car.carVin"
+            :value="car.id"
+            :label="car.driver.firstName + ' ' + car.driver.lastName"
           >
             <div class="">
-              {{ car.carMake }}
-              {{ car.carModel }}
-              {{ car.registrationNumber }}
-              {{ car.carVin }}
+              {{ car.driver.firstName }}
+              {{ car.driver.lastName }}
             </div>
           </el-option>
         </el-select>
+      </el-form-item>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.eventType')" prop="eventCode">
+        <el-select v-model="addCarEventForm.eventCode" filterable>
+          <el-option v-for="(event, id) in eventsList" :key="id" :value="event.code" :label="event.name">
+            <div class="">
+              {{ event.name }}
+            </div>
+          </el-option>
+        </el-select>
+      </el-form-item>
+    </div>
+    <div>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.mileage')" prop="mileage">
+        <el-input v-model="addCarEventForm.mileage" type="number" />
+      </el-form-item>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.cost')" prop="cost">
+        <el-input v-model="addCarEventForm.cost" type="number" />
+      </el-form-item>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.date')" prop="dateTime">
+        <el-date-picker v-model="addCarEventForm.dateTime" type="datetime" />
+      </el-form-item>
+    </div>
+  </div>
+  <div v-else-if="mobile">
+    <div class="">
+      <el-form-item :label="$t('DocumentsWizard.formLabels.driver')" prop="carUserId">
+        <el-select v-model="addCarEventForm.carUserId" filterable>
+          <el-option
+            v-for="(car, id) in carsList"
+            :key="id"
+            :value="car.id"
+            :label="car.driver.firstName + ' ' + car.driver.lastName"
+          >
+            <div class="">
+              {{ car.driver.firstName }}
+              {{ car.driver.lastName }}
+            </div>
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.eventType')" prop="eventCode">
+        <el-select v-model="addCarEventForm.eventCode" filterable>
+          <el-option v-for="(event, id) in eventsList" :key="id" :value="event.code" :label="event.name">
+            <div class="">
+              {{ event.name }}
+            </div>
+          </el-option>
+        </el-select>
+      </el-form-item>
+    </div>
+    <div>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.mileage')" prop="mileage">
+        <el-input v-model="addCarEventForm.mileage" type="number" />
+      </el-form-item>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.cost')" prop="cost">
+        <el-input v-model="addCarEventForm.cost" type="number" />
+      </el-form-item>
+      <el-form-item :label="$t('DocumentsWizard.formLabels.date')" prop="dateTime">
+        <el-date-picker v-model="addCarEventForm.dateTime" type="datetime" />
       </el-form-item>
     </div>
   </div>
@@ -69,6 +90,9 @@ export default {
       type: Object,
     },
     carsList: {
+      type: Array,
+    },
+    eventsList: {
       type: Array,
     },
   },

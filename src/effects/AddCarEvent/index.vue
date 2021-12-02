@@ -1,11 +1,15 @@
 <template>
   <ModalGateway :large="!modalSize" :slight="modalSize" :title="$t('AddCarEvent.add_car_event')" :close="close">
-    <el-form ref="addCarEventForm" v-loading="dataLoading" class="-event" :model="addCarEventForm" label-position="top">
-      <CarFormFields :add-car-event-form="addCarEventForm" :cars-list="carsList"></CarFormFields>
+    <el-form ref="addCarEventForm" v-loading="dataLoading" class="-event" :model="addCarEventForm" :rules="rules" label-position="top">
+      <CarFormFields
+        :add-car-event-form="addCarEventForm"
+        :cars-list="carsList.carUsers"
+        :events-list="eventTypesList"
+      ></CarFormFields>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button :disabled="dataLoading" @click="close = true">{{ $t('cancel') }}</el-button>
-      <el-button :disabled="dataLoading" type="success" @click="komentarz">
+      <el-button :disabled="dataLoading" type="success" @click="submitNewCarEvent">
         {{ $t('confirm') }}
       </el-button>
     </span>
@@ -15,7 +19,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import { addCar, getCarMake, getCarsList } from '@/api/carsApi';
+import { addCarEvent } from '@/api/carEventsApi';
+import { addCar, getCar, getCarMake, getCarsList } from '@/api/carsApi';
+import { getEventTypes } from '@/api/eventTypesApi';
 import ModalGateway from '@/modals/ModalGateway';
 
 import CarFormFields from './components/CarFormFields';
@@ -26,6 +32,9 @@ export default {
     CarFormFields,
   },
   props: {
+    car: {
+      type: Object,
+    },
     carEvent: {
       type: Object,
     },
@@ -33,6 +42,7 @@ export default {
   data() {
     return {
       carsList: [],
+      eventTypesList: [],
       close: false,
       addCarEventForm: {
         carId: null,
@@ -43,6 +53,13 @@ export default {
         mileage: null,
         carUserId: null,
         cost: null,
+      },
+      rules: {
+        eventCode: [{ required: true, message: this.$t('validation.car_make_required') }],
+        dateTime: [{ required: true, message: this.$t('validation.car_model_required') }],
+        mileage: [{ required: true, message: this.$t('validation.car_vin_max') }],
+        carUserId: [{ required: true, message: this.$t('validation.registration_date_required') }],
+        cost: [{ required: true, message: this.$t('validation.admission_date_required') }],
       },
     };
   },
@@ -70,18 +87,14 @@ export default {
   },
   async created() {
     await this.getCarsList();
+    await this.getEventTypesList();
+    this.addCarEventForm.carId = this.car.carId;
   },
   methods: {
     ...mapActions('app', ['toggleDataLoading']),
-    ...mapActions('carsListViewStore', ['reloadCars']),
-
-    komentarz() {
-      const newCarEvent = { ...this.carEvent, ...this.addCarEventForm };
-      console.log(this.carsList);
-    },
     getCarsList() {
       this.toggleDataLoading(true);
-      getCarsList()
+      getCar(this.car.carId)
         .then((response) => {
           if (response.ok) {
             this.carsList = response.data;
@@ -97,18 +110,31 @@ export default {
           this.toggleDataLoading(false);
         });
     },
-    submitNewCar() {
-      const newCar = { ...this.car, ...this.addCarForm };
-      newCar.carVin ? (newCar.carVin = newCar.carVin.toUpperCase()) : newCar.carVin;
-      newCar.registrationNumber
-        ? (newCar.registrationNumber = newCar.registrationNumber.toUpperCase())
-        : newCar.registrationNumber;
-      this.$refs.addCarForm.validate((valid) => {
+    getEventTypesList() {
+      this.toggleDataLoading(true);
+      getEventTypes()
+        .then((response) => {
+          if (response.ok) {
+            this.eventTypesList = response.data;
+          } else {
+            this.$message({
+              message: this.$t('AddCar.car_make_failed'),
+              type: 'error',
+              center: true,
+            });
+          }
+        })
+        .finally(() => {
+          this.toggleDataLoading(false);
+        });
+    },
+    submitNewCarEvent() {
+      const newCarEvent = { ...this.carEvent, ...this.addCarEventForm };
+      this.$refs.addCarEventForm.validate((valid) => {
         if (valid) {
           this.toggleDataLoading(true);
-          addCar(newCar).then((response) => {
+          addCarEvent(newCarEvent).then((response) => {
             if (response.ok) {
-              this.reloadCars();
               this.addingCarEventSuccess();
             } else {
               this.addingCarEventFailed();
@@ -119,7 +145,7 @@ export default {
     },
     addingCarEventSuccess() {
       this.$message({
-        message: this.$t('AddCar.add_car_success'),
+        message: this.$t('AddCarEvent.add_car_event_success'),
         type: 'success',
         center: true,
       });
@@ -128,7 +154,7 @@ export default {
     },
     addingCarEventFailed() {
       this.$message({
-        message: this.$t('AddCar.add_car_failed'),
+        message: this.$t('AddCarEvent.car_make_event_failed'),
         type: 'error',
         center: true,
       });

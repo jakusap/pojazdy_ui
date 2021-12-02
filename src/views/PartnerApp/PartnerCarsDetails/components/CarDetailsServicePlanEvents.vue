@@ -1,5 +1,4 @@
 <template>
-  <div v-if="car.servicePlanId > 0">
   <div class="event-list">
     <el-table :data="servicePlan.serviceEvents" :empty-text="$t('ServiceEvents.no_serviceEvents_placeholder')">
       <el-table-column :label="$t('DocumentsWizard.formLabels.serviceEvent_name')" min-width="60px" align="center">
@@ -8,7 +7,7 @@
       <el-table-column :label="$t('DocumentsWizard.formLabels.notify_mileage')" min-width="60px" align="center">
         <template slot-scope="scope">{{ scope.row.mileageNotification }}</template>
       </el-table-column>
-      <el-table-column :label="$t('DocumentsWizard.formLabels.mileage')" min-width="60px" align="center">
+      <el-table-column :label="$t('DocumentsWizard.formLabels.max_mileage')" min-width="60px" align="center">
         <template slot-scope="scope">{{ scope.row.mileage }}</template>
       </el-table-column>
       <el-table-column :label="$t('DocumentsWizard.formLabels.notify_period')" min-width="60px" align="center">
@@ -18,7 +17,6 @@
         <template slot-scope="scope">{{ scope.row.period }}</template>
       </el-table-column>
     </el-table>
-  </div>
   </div>
 </template>
 
@@ -35,10 +33,6 @@ export default {
   },
   computed: {
     ...mapGetters('carsDetailsStore', ['car', 'carId']),
-    // tableData() {
-    //   let tableData = JSON.parse(JSON.stringify(this.servicePlan));
-    //   return tableData.serviceEvents;
-    // },
   },
   async created() {
     this.setCarId(this.carId);
@@ -55,12 +49,6 @@ export default {
           .then((response) => {
             if (response.ok) {
               this.servicePlan = response.data;
-            } else {
-              this.$message({
-                message: this.$t('AddServicePlan.get_servicePlan_failed'),
-                type: 'error',
-                center: true,
-              });
             }
           })
           .finally(() => {
@@ -142,5 +130,9 @@ export default {
   border: 0;
   border-radius: 16px;
   cursor: pointer;
+}
+
+.event-list {
+  margin: 10px 0 0 16px;
 }
 </style>

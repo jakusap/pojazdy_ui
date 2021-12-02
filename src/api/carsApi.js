@@ -13,6 +13,18 @@ export const getCar = (carId) =>
     params: { carId: carId },
   });
 
+export const getServicePlanCarsList = (servicePlanId) =>
+  request({
+    url: `/api/cars/servicePlanCars/${servicePlanId}`,
+    method: 'get',
+  });
+
+export const updateServicePlanCarsList = (carId) =>
+  request({
+    url: `/api/cars/removeServicePlanCars/${carId}`,
+    method: 'get',
+  });
+
 export const getCarMake = () =>
   request({
     url: `/api/cars/carMake`,

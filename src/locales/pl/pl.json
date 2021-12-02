@@ -65,7 +65,9 @@
     "drop_off_comment": "Komentarz przy zwrocie pojazdu"
   },
   "AddCarEvent": {
-    "add_car_event": "Dodaj nowe zdarzenie samochodowe"
+    "add_car_event": "Dodaj nowe zdarzenie samochodowe",
+    "add_car_event_success": "Poprawnie dodano nowy zdarzenie samochodowe.",
+    "car_make_event_failed": "Nie udało się pobrać dostępnych zdarzeń samochodowych."
   },
   "ApiCredentials": {
     "cancel": "Anuluj usuwanie",
@@ -243,13 +245,19 @@
       "frameNumber": "Numer ramy",
       "frameNumber_tooltip": "",
       "servicePlan_name": "Nazwa planu serwisowego",
-      "mileage": "Przebieg maksymalny",
+      "max_mileage": "Przebieg maksymalny",
       "notify_mileage": "Przebieg graniczny",
       "serviceEvent_name": "Zdarzenie serwisowe",
       "period": "Ostateczna data",
       "notify_period": "Data graniczna",
       "vehicle": "Pojazd",
-      "driver": "Kierowca"
+      "driver": "Kierowca",
+      "carEvents": "Zdarzenia samochodowe",
+      "serviceEvents": "Zdarzenia serwisowe",
+      "date": "Data",
+      "mileage": "Przebieg",
+      "cost": "Koszt",
+      "eventType": "Rodzaj zdarzenia"
     },
     "formValues": {
       "polish_citizenship": "polskie"
@@ -517,13 +525,21 @@
     "add_servicePlan": "Dodaj plan serwisowy",
     "edit_servicePlan": "Edytuj plan serwisowy",
     "active": "Plan serwisowy jest aktywny",
-    "inactive": "Plan serwisowy jest nieaktywny"
+    "inactive": "Plan serwisowy jest nieaktywny",
+    "delete_servicePlanCar": "Usuń samochód z planu",
+    "confirm_delete": "Czy na pewno chcesz usunąć pojazd z planu serwisowego?"
   },
   "ServiceEvents": {
     "serviceEvents_title": "Zdarzenie serwisowe",
     "no_serviceEvents_placeholder": "Brak zdarzeń serwisowych",
     "add_serviceEvent": "Dodaj zdarzenie serwisowe",
-    "edit_serviceEvent": "Edytuj zdarzenie"
+    "edit_serviceEvent": "Edytuj zdarzenie serwisowe"
+  },
+  "CarEvents": {
+    "carEvents_title": "Zdarzenie samochodowe",
+    "no_carEvents_placeholder": "Brak zdarzeń samochodowych",
+    "add_carEvent": "Dodaj zdarzenie samochodowe",
+    "edit_carEvent": "Edytuj zdarzenie samochodowe"
   },
   "FREENOW_BONUS": "Bonus",
   "FREENOW_TRIPS": "Przejazdy",
