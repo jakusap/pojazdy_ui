@@ -13,7 +13,7 @@
 <script>
 import { mapActions } from 'vuex';
 
-import { updateServicePlanCarsList } from '@/api/carsApi';
+import { removeCarFromServicePlanCarsList } from '@/api/carsApi';
 
 export default {
   props: {
@@ -27,7 +27,6 @@ export default {
   watch: {
     async reloadServicePlanCars(reload) {
       if (reload === true) {
-       console.log("watcher");
         this.reloadedServicePlanCars();
       }
     },
@@ -37,7 +36,7 @@ export default {
     ...mapActions('servicePlansDetailsStore', ['reloadServicePlanCars', 'reloadedServicePlanCars']),
     removeCarFromServicePlan() {
       this.dialogVisible = false;
-      updateServicePlanCarsList(this.carId);
+      removeCarFromServicePlanCarsList(this.carId);
       this.reloadServicePlanCars();
     },
   },

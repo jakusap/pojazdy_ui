@@ -10,13 +10,13 @@
       <div class="car-item">
         <h2 v-if="!editMode">{{ servicePlan.carMake }}</h2>
         <el-form-item v-if="editMode" prop="carMake">
-          <el-select v-model="servicePlanDetails.carMake" filterable @change="getCarModel">
+          <el-select v-model="servicePlanDetails.carMake" filterable clearable @change="getCarModel">
             <el-option v-for="(carMake, id) in carsMake" :key="id" :value="carMake" :label="carMake" />
           </el-select>
         </el-form-item>
         <h2 v-if="!editMode">{{ servicePlan.carModel }}</h2>
         <el-form-item v-if="editMode" prop="carModel">
-          <el-select v-model="servicePlanDetails.carModel" filterable>
+          <el-select v-model="servicePlanDetails.carModel" filterable clearable>
             <el-option v-for="(carModel, id) in carModels" :key="id" :value="carModel" :label="carModel" />
           </el-select>
         </el-form-item>

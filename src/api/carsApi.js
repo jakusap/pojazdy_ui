@@ -19,9 +19,22 @@ export const getServicePlanCarsList = (servicePlanId) =>
     method: 'get',
   });
 
-export const updateServicePlanCarsList = (carId) =>
+export const getServicePlansCarsList = (servicePlan) =>
+  request({
+    url: '/api/cars/servicePlanCars',
+    method: 'post',
+    data: servicePlan,
+  });
+
+export const removeCarFromServicePlanCarsList = (carId) =>
   request({
     url: `/api/cars/removeServicePlanCars/${carId}`,
+    method: 'get',
+  });
+
+export const addCarForServicePlanCarsList = (carId, servicePlanId) =>
+  request({
+    url: `/api/cars/addCarForServicePlan/${carId}/${servicePlanId}`,
     method: 'get',
   });
 

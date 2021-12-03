@@ -41,11 +41,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters} from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 import { getServicePlanCarsList } from '@/api/carsApi';
 import DataWrapper from '@/components/DataWrapper';
 import AddServiceEvent from '@/effects/AddServiceEvent';
+import AddServicePlanCar from '@/effects/AddServicePlanCar';
 import DialogWindow from '@/effects/DialogWindow';
 
 export default {
@@ -87,7 +88,6 @@ export default {
   },
   watch: {
     async reloadServicePlanCars(reload) {
-      console.log(this.reloadServicePlanCars + " watcher");
       if (reload === true) {
         await this.getServiceCars();
         this.reloadedServicePlanCars();
@@ -105,7 +105,7 @@ export default {
       this.$modalOn(DialogWindow, { dialogVisible: true, carId: row.carId });
     },
     showAddServiceEventModal() {
-      this.$modalOn(AddServiceEvent);
+      this.$modalOn(AddServicePlanCar, { servicePlan: this.servicePlan });
     },
     getServiceCars() {
       this.toggleDataLoading(true);

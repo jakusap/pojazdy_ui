@@ -1,6 +1,13 @@
 <template>
   <ModalGateway :large="!modalSize" :slight="modalSize" :title="$t('AddCarEvent.add_car_event')" :close="close">
-    <el-form ref="addCarEventForm" v-loading="dataLoading" class="-event" :model="addCarEventForm" :rules="rules" label-position="top">
+    <el-form
+      ref="addCarEventForm"
+      v-loading="dataLoading"
+      class="-event"
+      :model="addCarEventForm"
+      :rules="rules"
+      label-position="top"
+    >
       <CarFormFields
         :add-car-event-form="addCarEventForm"
         :cars-list="carsList.carUsers"
@@ -92,6 +99,7 @@ export default {
   },
   methods: {
     ...mapActions('app', ['toggleDataLoading']),
+    ...mapActions('carsDetailsStore', ['reloadCarEvents']),
     getCarsList() {
       this.toggleDataLoading(true);
       getCar(this.car.carId)
@@ -135,6 +143,7 @@ export default {
           this.toggleDataLoading(true);
           addCarEvent(newCarEvent).then((response) => {
             if (response.ok) {
+              this.reloadCarEvents();
               this.addingCarEventSuccess();
             } else {
               this.addingCarEventFailed();

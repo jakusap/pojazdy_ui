@@ -42,11 +42,19 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('carsDetailsStore', ['car', 'carId']),
+    ...mapGetters('carsDetailsStore', ['car', 'carId', 'reloadCarEvents']),
     paginatedData() {
       const limit = this.pagination.limit;
       const currentPage = this.pagination.currentPage;
       return this.carEventsList.slice(limit * (currentPage - 1), limit * currentPage);
+    },
+  },
+  watch: {
+    async reloadCarEvents(reload) {
+      if (reload === true) {
+        await this.getCarEvents();
+        this.reloadedCarEvents();
+      }
     },
   },
   async created() {
@@ -56,12 +64,12 @@ export default {
   },
   methods: {
     ...mapActions('app', ['toggleDataLoading']),
-    ...mapActions('carsDetailsStore', ['getViewInfo', 'setCarId']),
+    ...mapActions('carsDetailsStore', ['getViewInfo', 'setCarId', 'reloadedCarEvents']),
     showAddCarEventModal() {
       const car = this.car;
       this.$modalOn(AddCarEvent, { car: car });
     },
-    getCarEvents() {
+    async getCarEvents() {
       if (this.car.servicePlanId > 0) {
         this.toggleDataLoading(true);
         getCarEventsForPartnerCarList(this.carId)
