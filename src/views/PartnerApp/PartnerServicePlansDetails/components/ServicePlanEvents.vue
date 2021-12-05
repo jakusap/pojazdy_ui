@@ -16,16 +16,16 @@
       <el-table-column :label="$t('DocumentsWizard.formLabels.period')" min-width="60px" align="center">
         <template slot-scope="scope">{{ scope.row.period }}</template>
       </el-table-column>
-      <el-table-column :label="$t('ServiceEvents.edit_serviceEvent')" min-width="40px" align="center">
-        <el-button
-          :type="editMode ? 'warning' : 'primary'"
-          class="card-edit"
-          size="small"
-          icon="el-icon-edit"
-          circle
-          @click="toggleEdit()"
-        />
-      </el-table-column>
+<!--      <el-table-column :label="$t('ServiceEvents.edit_serviceEvent')" min-width="40px" align="center">-->
+<!--        <el-button-->
+<!--          :type="editMode ? 'warning' : 'primary'"-->
+<!--          class="card-edit"-->
+<!--          size="small"-->
+<!--          icon="el-icon-edit"-->
+<!--          circle-->
+<!--          @click="toggleEdit()"-->
+<!--        />-->
+<!--      </el-table-column>-->
     </el-table>
 
     <div class="buttons">
@@ -54,12 +54,6 @@ export default {
         email: null,
         phoneNumber: null,
         active: null,
-      },
-      rules: {
-        firstName: [{ required: true, message: this.$t('validation.first_name_cannot_be_empty') }],
-        lastName: [{ required: true, message: this.$t('validation.last_name_cannot_be_empty') }],
-        email: { type: 'email', message: this.$t('validation.wrong_email_format') },
-        phoneNumber: { type: 'string', max: 50, message: this.$t('validation.wrong_phone_number_format') },
       },
     };
   },

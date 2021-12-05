@@ -31,7 +31,7 @@
       <div class="buttons">
         <el-button-group>
           <el-button type="primary" class="cars__action" @click="showAddServiceEventModal()">
-            {{ $t('AddServiceEvent.add_serviceEvent') }}
+            {{ $t('AddCar.add_car') }}
           </el-button>
         </el-button-group>
         <slot></slot>
@@ -57,13 +57,6 @@ export default {
     return {
       editMode: false,
       carsList: [],
-      servicePlanDetails: {
-        firstName: null,
-        lastName: null,
-        email: null,
-        phoneNumber: null,
-        active: null,
-      },
       pagination: {
         limit: 30,
         currentPage: 1,

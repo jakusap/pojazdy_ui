@@ -1,59 +1,67 @@
 <template>
-  <div class="container">
-<!--    <el-row :gutter="16">-->
-<!--      <el-col :sm="13">-->
-    <div class="event-list">
-      <h1>Test lewy panel</h1>
-      <el-table :data="serviceEventsList" :empty-text="$t('ServiceEvents.no_serviceEvents_placeholder')">
-        <el-table-column :label="$t('DocumentsWizard.formLabels.servicePlan_name')" min-width="60px" align="center">
-          <template slot-scope="scope">{{ scope.row.servicePlan.servicePlanName }}</template>
-        </el-table-column>
-        <el-table-column :label="$t('DocumentsWizard.formLabels.mileage')" min-width="60px" align="center">
-          <template slot-scope="scope">{{ scope.row.serviceEvent.comments }}</template>
-        </el-table-column>
-        <el-table-column :label="$t('DocumentsWizard.formLabels.make_model')" min-width="60px" align="center">
-          <template slot-scope="scope">
-            {{ scope.row.servicePlan.carMake }} {{ scope.row.servicePlan.carModel }}</template
-          >
-        </el-table-column>
-        <el-table-column :label="$t('DocumentsWizard.formLabels.mileage')" min-width="60px" align="center">
-          <template slot-scope="scope">{{ scope.row.serviceEvent.mileage }}</template>
-        </el-table-column>
-        <el-table-column :label="$t('DocumentsWizard.formLabels.notify_mileage')" min-width="60px" align="center">
-          <template slot-scope="scope">{{ scope.row.serviceEvent.mileageNotification }}</template>
-        </el-table-column>
-      </el-table>
-    </div>
-<!--      </el-col>-->
-<!--      <el-col :sm="11">-->
-<!--        <h1>Test środkowy panel</h1>-->
-<!--        <AddCarEventPanel />-->
-<!--      </el-col>-->
-<!--    </el-row>-->
+  <div class="event-list">
+    <ul id="">
+      <li v-for="events in serviceEventsList" :key="events.carId">
+        {{ events.carMake }} {{ events.carModel }} {{ events.registrationNumber }}
+        <ul>
+          <li v-for="event in events.serviceEvents" :key="event.orderNumber">
+            {{ event.comments }} | powiadom przy: {{ event.mileageNotification }} km | przebieg graniczny {{ event.mileage }} km
+            <el-button @click="removeEvent(event)">
+              Zrealizuj
+            </el-button>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import { getPartnerServiceEventsList } from '@/api/servicePlansApi';
+import { getPartnerServiceEventsList, removeFromPartnerServiceEventsList } from '@/api/servicePlansApi';
 
-import AddCarEventPanel from './components/AddCarEventPanel';
+import partnerEventsListViewStore from './partnerEventsListViewStore';
+
+import RemoveServiceEventDialogWindow from '@/effects/RemoveServiceEvent/RemoveServiceEventDialogWindow';
 
 export default {
-  components: {
-    // AddCarEventPanel,
-  },
   data() {
     return {
       serviceEventsList: [],
     };
+  },
+  computed: {
+    ...mapGetters(['dataLoading']),
+    ...mapGetters('partnerEventsListViewStore', ['reloadPartnerEvents']),
+  },
+  watch: {
+    async reloadPartnerEvents(reload) {
+      if (reload === true) {
+        await this.loadServiceEventList();
+        this.reloadedPartnerEvents();
+      }
+    },
+  },
+  beforeCreate() {
+    this.$store.registerModule('partnerEventsListViewStore', partnerEventsListViewStore);
+  },
+  destroyed() {
+    this.$store.unregisterModule('partnerEventsListViewStore');
   },
   async created() {
     await this.loadServiceEventList();
   },
   methods: {
     ...mapActions('app', ['toggleDataLoading']),
+    ...mapActions('partnerEventsListViewStore', ['reloadedPartnerEvents']),
+    removeEvent(event) {
+      this.$modalOn(RemoveServiceEventDialogWindow, {
+        dialogVisible: true,
+        planId: event.planId,
+        orderNumber: event.orderNumber,
+      });
+    },
     async loadServiceEventList() {
       this.toggleDataLoading(true);
       getPartnerServiceEventsList()

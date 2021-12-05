@@ -8,8 +8,14 @@ export const getServicePlansList = () =>
 
 export const getPartnerServiceEventsList = () =>
   request({
-    url: '/api/service_plans/partnerServiceEvents',
+    url: '/api/partnerServiceEvents',
     method: 'get',
+  });
+
+export const removeFromPartnerServiceEventsList = (servicePlanId, orderNumber) =>
+  request({
+    url: `/api/updatePartnerServiceEvents/${servicePlanId}/${orderNumber}`,
+    method: 'put',
   });
 
 export const getSpecificServicePlanDetails = (servicePlanId) =>

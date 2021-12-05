@@ -45,7 +45,8 @@
     "add_servicePlan_success": "Poprawnie dodano nowy plan serwisowy.",
     "get_servicePlan_failed": "Nie udało się pobrać listy planów serwisowych",
     "edit_servicePlan_success": "Poprawnie zmodyfikowano plan serwisowy",
-    "edit_servicePlan_failed": "Nie udało się zmodyfikować planu serwisowego"
+    "edit_servicePlan_failed": "Nie udało się zmodyfikować planu serwisowego",
+    "add_car_to_service_plan": "Dodaj pojazd do planu serwisowego"
   },
   "AddServiceEvent": {
     "add_serviceEvent": "Dodaj zdarzenie serwisowe",
@@ -245,11 +246,11 @@
       "frameNumber": "Numer ramy",
       "frameNumber_tooltip": "",
       "servicePlan_name": "Nazwa planu serwisowego",
-      "max_mileage": "Przebieg maksymalny",
-      "notify_mileage": "Przebieg graniczny",
+      "max_mileage": "Przebieg graniczny",
+      "notify_mileage": "Powiadom przy przebiegu",
       "serviceEvent_name": "Zdarzenie serwisowe",
       "period": "Ostateczna data",
-      "notify_period": "Data graniczna",
+      "notify_period": "Powiadom przed datą",
       "vehicle": "Pojazd",
       "driver": "Kierowca",
       "carEvents": "Zdarzenia samochodowe",
@@ -1342,7 +1343,9 @@
     "pick_up_date_required": "Data przyjęcia pojazdu nie może być pusta",
     "responsibility_status_required": "Status odpowiedzialności jest wymagany",
     "car_description_max": "Za długi opis pojazdu.",
-    "car_comment_max": "Komentarz za dlugi."
+    "car_comment_max": "Komentarz za dlugi.",
+    "service_name_required": "Nazwa zdarzenia nie może być pusta",
+    "mileage_required": "Przebieg jest wymagany"
   },
   "vat0%": "0%",
   "vat23%": "23%",

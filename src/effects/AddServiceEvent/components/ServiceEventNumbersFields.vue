@@ -1,21 +1,21 @@
 <template>
   <div v-if="!mobile" class="el-row">
-    <el-form-item :label="$t('DocumentsWizard.formLabels.identificationNumber')" prop="mileage">
-      <el-input v-model="addServiceEventForm.mileage" class="new-transaction__input--large" />
-    </el-form-item>
-    <el-form-item :label="$t('DocumentsWizard.formLabels.identificationNumber')" prop="mileageNotification">
+    <el-form-item :label="$t('DocumentsWizard.formLabels.notify_mileage')" prop="mileageNotification">
       <el-input v-model="addServiceEventForm.mileageNotification" class="new-transaction__input--large" />
+    </el-form-item>
+    <el-form-item :label="$t('DocumentsWizard.formLabels.max_mileage')" prop="mileage">
+      <el-input v-model="addServiceEventForm.mileage" class="new-transaction__input--large" />
     </el-form-item>
   </div>
   <div v-else-if="mobile">
     <div class="mobile-div">
-      <el-form-item :label="$t('DocumentsWizard.formLabels.identificationNumber')" prop="mileage">
-        <el-input v-model="addServiceEventForm.mileage" class="new-transaction__input--large" />
+      <el-form-item :label="$t('DocumentsWizard.formLabels.notify_mileage')" prop="mileageNotification">
+        <el-input v-model="addServiceEventForm.mileageNotification" class="new-transaction__input--large" />
       </el-form-item>
     </div>
     <div class="mobile-div">
-      <el-form-item :label="$t('DocumentsWizard.formLabels.identificationNumber')" prop="mileageNotification">
-        <el-input v-model="addServiceEventForm.mileageNotification" class="new-transaction__input--large" />
+      <el-form-item :label="$t('DocumentsWizard.formLabels.max_mileage')" prop="mileage">
+        <el-input v-model="addServiceEventForm.mileage" class="new-transaction__input--large" />
       </el-form-item>
     </div>
   </div>

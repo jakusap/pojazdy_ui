@@ -1,7 +1,7 @@
 <template>
-  <ModalGateway :title="$t('CarUsers.title')" :close="close">
+  <ModalGateway :title="$t('AddServicePlan.add_car_to_service_plan')" :close="close">
     <el-form ref="addServicePlanCarForm" :model="carDetails" :rules="rules" @submit.native.prevent>
-      <el-form-item prop="carId" :label="$t('AddCarUser.all_responsibility_statuses')">
+      <el-form-item prop="carId">
         <el-select v-model="carDetails.carId" clearable>
           <el-option
             v-for="(car, id) in carsList"
@@ -14,7 +14,7 @@
     </el-form>
     <div slot="footer">
       <el-button @click="close = true">{{ $t('cancel') }}</el-button>
-      <el-button type="primary" @click="addServicePlanCar">{{ $t('CarUsers.add_car_user') }}</el-button>
+      <el-button type="primary" @click="addServicePlanCar">{{ $t('AddCar.add_car') }}</el-button>
     </div>
   </ModalGateway>
 </template>
@@ -76,10 +76,10 @@ export default {
             addCarForServicePlanCarsList(this.carDetails.carId, this.servicePlan.servicePlanId)
               .then((response) => {
                 if (response.ok) {
-                  this.$message({ message: this.$t('CarUsers.success'), type: 'success', center: true });
+                  this.$message({ message: this.$t('AddCar.add_car_success'), type: 'success', center: true });
                   this.close = true;
                 } else {
-                  this.$message({ message: this.$t('CarUsers.failed'), type: 'error', center: true });
+                  this.$message({ message: this.$t('AddCar.add_car_failed'), type: 'error', center: true });
                 }
               })
               .finally(() => {

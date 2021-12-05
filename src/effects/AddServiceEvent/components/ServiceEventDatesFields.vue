@@ -1,21 +1,21 @@
 <template>
   <div v-if="!mobile" class="el-row">
-    <el-form-item :label="$t('DocumentsWizard.formLabels.productionYear')" prop="period">
-      <el-date-picker v-model="addServiceEventForm.period" />
-    </el-form-item>
-    <el-form-item :label="$t('DocumentsWizard.formLabels.registrationDate')" prop="periodNotification">
+    <el-form-item :label="$t('DocumentsWizard.formLabels.notify_period')" prop="periodNotification">
       <el-date-picker v-model="addServiceEventForm.periodNotification" />
+    </el-form-item>
+    <el-form-item :label="$t('DocumentsWizard.formLabels.period')" prop="period">
+      <el-date-picker v-model="addServiceEventForm.period" />
     </el-form-item>
   </div>
   <div v-else-if="mobile">
     <div class="">
-      <el-form-item :label="$t('DocumentsWizard.formLabels.productionYear')" prop="period">
-        <el-date-picker v-model="addServiceEventForm.period" />
+      <el-form-item :label="$t('DocumentsWizard.formLabels.notify_period')" prop="periodNotification">
+        <el-date-picker v-model="addServiceEventForm.periodNotification" />
       </el-form-item>
     </div>
     <div class="">
-      <el-form-item :label="$t('DocumentsWizard.formLabels.registrationDate')" prop="periodNotification">
-        <el-date-picker v-model="addServiceEventForm.periodNotification" />
+      <el-form-item :label="$t('DocumentsWizard.formLabels.period')" prop="period">
+        <el-date-picker v-model="addServiceEventForm.period" />
       </el-form-item>
     </div>
   </div>

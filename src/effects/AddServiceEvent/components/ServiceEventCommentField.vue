@@ -1,11 +1,11 @@
 <template>
   <div v-if="!mobile" class="el-row">
-    <el-form-item :label="$t('DriverInvoices.description')" prop="comments">
+    <el-form-item :label="$t('DocumentsWizard.formLabels.serviceEvent_name')" prop="comments">
       <el-input v-model="addServiceEventForm.comments" class="new-transaction__input--large" />
     </el-form-item>
   </div>
   <div v-else-if="mobile" class="mobile-div">
-    <el-form-item :label="$t('DriverInvoices.description')" prop="comments">
+    <el-form-item :label="$t('DocumentsWizard.formLabels.serviceEvent_name')" prop="comments">
       <el-input v-model="addServiceEventForm.comments" class="new-transaction__input--large" />
     </el-form-item>
   </div>
