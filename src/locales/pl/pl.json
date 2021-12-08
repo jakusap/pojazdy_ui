@@ -534,7 +534,8 @@
     "serviceEvents_title": "Zdarzenie serwisowe",
     "no_serviceEvents_placeholder": "Brak zdarzeń serwisowych",
     "add_serviceEvent": "Dodaj zdarzenie serwisowe",
-    "edit_serviceEvent": "Edytuj zdarzenie serwisowe"
+    "edit_serviceEvent": "Edytuj zdarzenie serwisowe",
+    "confirm_delete": "Czy na pewno chcesz zrealizować to zdarzenie serwisowe?"
   },
   "CarEvents": {
     "carEvents_title": "Zdarzenie samochodowe",
@@ -1345,7 +1346,11 @@
     "car_description_max": "Za długi opis pojazdu.",
     "car_comment_max": "Komentarz za dlugi.",
     "service_name_required": "Nazwa zdarzenia nie może być pusta",
-    "mileage_required": "Przebieg jest wymagany"
+    "mileage_required": "Przebieg nie może być pusty",
+    "cost_required": "Koszt nie może być pusty",
+    "date_required": "Data nie może być pusta",
+    "driver_required": "Kierowca jest wymagany",
+    "event_type_reuqired": "Rodzaj zdarzenia nie może być pusty"
   },
   "vat0%": "0%",
   "vat23%": "23%",

@@ -44,7 +44,15 @@
           </template>
         </el-table-column>
       </el-table>
-      <TableActions></TableActions>
+      <TableActions>
+<!--        <Pagination-->
+<!--          :pagination="pagination"-->
+<!--          :length="cars.length"-->
+<!--          class="pagination"-->
+<!--          @change-page="(e) => (pagination.currentPage = e.page)"-->
+<!--          @change-pagination-limit="(e) => (pagination.limit = e)"-->
+<!--        />-->
+      </TableActions>
     </div>
   </DataWrapper>
 </template>
@@ -54,6 +62,7 @@ import { mapActions, mapGetters } from 'vuex';
 
 import { getCarsList } from '@/api/carsApi';
 import DataWrapper from '@/components/DataWrapper';
+import Pagination from '@/components/Pagination';
 import carsListViewStore from '@/views/PartnerApp/PartnerCars/carsListViewStore';
 
 import MobileCarInfo from './MobileCarInfo';
@@ -68,6 +77,7 @@ export default {
     TableActions,
     TableHeader,
     MobileCarInfo,
+    Pagination,
   },
   data() {
     return {

@@ -8,13 +8,13 @@ export const getServicePlansList = () =>
 
 export const getPartnerServiceEventsList = () =>
   request({
-    url: '/api/partnerServiceEvents',
+    url: '/api/message/partnerServiceEvents',
     method: 'get',
   });
 
 export const removeFromPartnerServiceEventsList = (servicePlanId, orderNumber) =>
   request({
-    url: `/api/updatePartnerServiceEvents/${servicePlanId}/${orderNumber}`,
+    url: `/api/message/updatePartnerServiceEvents/${servicePlanId}/${orderNumber}`,
     method: 'put',
   });
 

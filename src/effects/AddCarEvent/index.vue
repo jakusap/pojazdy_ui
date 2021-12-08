@@ -12,7 +12,8 @@
         :add-car-event-form="addCarEventForm"
         :cars-list="carsList.carUsers"
         :events-list="eventTypesList"
-      ></CarFormFields>
+      />
+      <CarEventFeaturesFields :add-car-event-form="addCarEventForm"/>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button :disabled="dataLoading" @click="close = true">{{ $t('cancel') }}</el-button>
@@ -32,11 +33,13 @@ import { getEventTypes } from '@/api/eventTypesApi';
 import ModalGateway from '@/modals/ModalGateway';
 
 import CarFormFields from './components/CarFormFields';
+import CarEventFeaturesFields from './components/CarEventFeaturesFields';
 
 export default {
   components: {
     ModalGateway,
     CarFormFields,
+    CarEventFeaturesFields,
   },
   props: {
     car: {
@@ -62,11 +65,11 @@ export default {
         cost: null,
       },
       rules: {
-        eventCode: [{ required: true, message: this.$t('validation.car_make_required') }],
-        dateTime: [{ required: true, message: this.$t('validation.car_model_required') }],
-        mileage: [{ required: true, message: this.$t('validation.car_vin_max') }],
-        carUserId: [{ required: true, message: this.$t('validation.registration_date_required') }],
-        cost: [{ required: true, message: this.$t('validation.admission_date_required') }],
+        eventCode: [{ required: true, message: this.$t('validation.event_type_reuqired') }],
+        dateTime: [{ required: true, message: this.$t('validation.date_required') }],
+        mileage: [{ required: true, message: this.$t('validation.mileage_required') }],
+        carUserId: [{ required: true, message: this.$t('validation.driver_required') }],
+        cost: [{ required: true, message: this.$t('validation.cost_required') }],
       },
     };
   },

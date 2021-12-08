@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog :visible.sync="dialogVisible" width="30%" center>
-      <span>{{ $t('ServicePlans.confirm_delete') }}</span>
+      <span>{{ $t('ServiceEvents.confirm_delete') }}</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">{{ $t('no') }}</el-button>
         <el-button type="primary" @click="removeEventFromServiceEvents">{{ $t('yes') }}</el-button>
