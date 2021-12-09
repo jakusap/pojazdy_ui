@@ -1,6 +1,9 @@
 <template>
   <div class="event-list">
     <input id="invoice-upload" type="file" :accept="acceptedFiles" @input="(e) => previewFile(e)" />
+    <div id="invoice-download" style="height: 200px; width: 200px">
+      <el-button @click="downloadFile(13)">Download</el-button>
+    </div>
     <ul id="">
       <li v-for="events in serviceEventsList" :key="events.carId">
         {{ events.carMake }} {{ events.carModel }} {{ events.registrationNumber }}
@@ -21,7 +24,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import { uploadFile } from '@/api/files';
+import { getDocumentPreview, uploadFile } from '@/api/files';
 import { getPartnerServiceEventsList, removeFromPartnerServiceEventsList } from '@/api/servicePlansApi';
 import RemoveServiceEventDialogWindow from '@/effects/RemoveServiceEvent/RemoveServiceEventDialogWindow';
 
@@ -31,6 +34,15 @@ export default {
   data() {
     return {
       serviceEventsList: [],
+      document: {
+        documentId: null,
+        partnerUUID: null,
+        typeCode: 'DRIVING_LICENCE',
+        driverUUID: null,
+        filename: 'licence.pdf',
+        description: 'Prawo jazdy',
+        systemEntryDate: new Date(),
+      },
     };
   },
   computed: {
@@ -67,17 +79,29 @@ export default {
         orderNumber: event.orderNumber,
       });
     },
+    downloadFile(documentId) {
+      getDocumentPreview(documentId).then((response) => {
+        const fileName = response.headers.filename;
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${fileName}`); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+      });
+    },
     previewFile(e) {
       const uploadedFile = e?.target?.files || e;
       const file = uploadedFile[0];
       const formData = new FormData();
       if (file.size <= 10 ** 6) {
         formData.append('file', file);
+        formData.append('typeCode', 'MANDATE');
+        formData.append('description', 'Mandat za prędkość');
+        formData.append('driverUUID', 'faa07e14-0a0b-4f86-846b-090b66581cd1');
         uploadFile(formData).then((response) => {
           if (response.ok) {
-            console.log(response.data);
-          } else {
-            console.log(response.data);
+            alert('Uploaded');
           }
         });
       }
