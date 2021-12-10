@@ -1,8 +1,11 @@
 <template>
   <div class="event-list">
-    <input id="invoice-upload" type="file" :accept="acceptedFiles" @input="(e) => previewFile(e)" />
+    document<input id="invoice-upload" type="file" :accept="acceptedFiles" @input="(e) => previewDocument(e)" />
+    <br />
+    invoice<input id="invoice-upload" type="file" :accept="acceptedFiles" @input="(e) => previewInvoice(e)" />
     <div id="invoice-download" style="height: 200px; width: 200px">
-      <el-button @click="downloadFile(13)">Download</el-button>
+      <el-button @click="downloadDocument(13)">Download document</el-button>
+      <el-button @click="downloadInvoice('d9de203c-1e0a-4d73-b448-7d8733fdbcc6')">Download invoice</el-button>
     </div>
     <ul id="">
       <li v-for="events in serviceEventsList" :key="events.carId">
@@ -24,7 +27,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import { getDocumentPreview, uploadFile } from '@/api/files';
+import { getDocumentPreview, uploadDocument, uploadInvoice,  getInvoicePreview } from '@/api/files';
 import { getPartnerServiceEventsList, removeFromPartnerServiceEventsList } from '@/api/servicePlansApi';
 import RemoveServiceEventDialogWindow from '@/effects/RemoveServiceEvent/RemoveServiceEventDialogWindow';
 
@@ -79,7 +82,7 @@ export default {
         orderNumber: event.orderNumber,
       });
     },
-    downloadFile(documentId) {
+    downloadDocument(documentId) {
       getDocumentPreview(documentId).then((response) => {
         const fileName = response.headers.filename;
         const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -90,7 +93,18 @@ export default {
         link.click();
       });
     },
-    previewFile(e) {
+    downloadInvoice(invoiceUUID) {
+      getInvoicePreview(invoiceUUID).then((response) => {
+        const fileName = response.headers.filename;
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${fileName}`); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+      });
+    },
+    previewDocument(e) {
       const uploadedFile = e?.target?.files || e;
       const file = uploadedFile[0];
       const formData = new FormData();
@@ -100,6 +114,21 @@ export default {
         formData.append('description', 'Mandat za prędkość');
         formData.append('driverUUID', 'faa07e14-0a0b-4f86-846b-090b66581cd1');
         uploadFile(formData).then((response) => {
+          if (response.ok) {
+            alert('Uploaded');
+          }
+        });
+      }
+    },
+    previewInvoice(e) {
+      const uploadedFile = e?.target?.files || e;
+      const file = uploadedFile[0];
+      const formData = new FormData();
+      if (file.size <= 10 ** 6) {
+        formData.append('file', file);
+        formData.append('description', 'Faktura za paliwo');
+        formData.append('driverUUID', 'faa07e14-0a0b-4f86-846b-090b66581cd1');
+        uploadInvoice(formData).then((response) => {
           if (response.ok) {
             alert('Uploaded');
           }
