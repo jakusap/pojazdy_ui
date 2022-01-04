@@ -40,3 +40,15 @@ export const getUploadLogs = (name, from) =>
     method: 'get',
     params: { name: name, from: from },
   });
+
+export const getPartnerDocuments = () =>
+  request({
+    url: '/api/documents',
+    method: 'get',
+  });
+
+export const getPartnerInvoices = () =>
+  request({
+    url: '/api/invoices',
+    method: 'get',
+  });
