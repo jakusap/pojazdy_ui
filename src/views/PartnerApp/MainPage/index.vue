@@ -10,8 +10,7 @@
             >
             <ul class="hidden-list">
               <li v-for="event in events.serviceEvents" :key="event.orderNumber" class="car-event_list-item">
-                {{ event.comments }} | powiadom przy: {{ event.mileageNotification }} km | przebieg graniczny
-                {{ event.mileage }} km
+                {{ event.comments }} | za: {{ event.mileageNotification }} km | do: {{ event.periodNotification }}
                 <el-button class="car-event_list-button" type="primary" @click="removeEvent(event)">
                   Zrealizuj
                 </el-button>
@@ -23,26 +22,37 @@
       <el-col :sm="10">
         <div class="files-container">
           <div class="files-documents">
-            <h1>Dokumenty</h1>
+            <h1>{{ $t('DocumentsWizard.formLabels.documents') }}</h1>
             <ul class="hidden-list">
               <li v-for="doc in documentsList" :key="doc.documentId" class="car-event_list">
-                <span class="car-event_name"> {{ doc.description }} {{ $t('dash') }} {{ doc.filename }}</span>
+                <span class="car-event_name"> {{ doc.typeCode }} {{ $t('dash') }} {{ doc.filename }} </span>
+                <span style="float: right;">
+                  <el-button
+                    type="primary"
+                    size="small"
+                    icon="el-icon-link"
+                    circle
+                    @click="downloadDocument(doc.documentId)"
+                  />
+                </span>
               </li>
             </ul>
-            <h1>Faktury</h1>
+            <h1>{{ $t('DocumentsWizard.formLabels.invoices') }}</h1>
             <ul class="hidden-list">
               <li v-for="inv in invoicesList" :key="inv.uuid" class="car-event_list">
-                <span class="car-event_name"> {{ inv.description }} {{ $t('dash') }} {{ inv.filename }}</span>
+                <span class="car-event_name"> {{ inv.filename }}</span>
+                <span style="float: right;">
+                  <el-button
+                    type="primary"
+                    size="small"
+                    icon="el-icon-link"
+                    circle
+                    @click="downloadInvoice(inv.uuid)"
+                  />
+                </span>
               </li>
             </ul>
           </div>
-        </div>
-        document<input id="invoice-upload" type="file" :accept="acceptedFiles" @input="(e) => previewDocument(e)" />
-        <br />
-        invoice<input id="invoice-upload" type="file" :accept="acceptedFiles" @input="(e) => previewInvoice(e)" />
-        <div id="invoice-download" style="height: 200px; width: 200px">
-          <el-button @click="downloadDocument(13)">Download document</el-button>
-          <el-button @click="downloadInvoice('d9de203c-1e0a-4d73-b448-7d8733fdbcc6')">Download invoice</el-button>
         </div>
       </el-col>
     </el-row>
@@ -52,7 +62,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import { getDocumentPreview, getInvoicePreview, getPartnerDocuments, getPartnerInvoices, uploadDocument, uploadInvoice } from '@/api/files';
+import {
+  getDocumentPreview,
+  getInvoicePreview,
+  getPartnerDocuments,
+  getPartnerInvoices,
+  uploadDocument,
+  uploadInvoice,
+} from '@/api/files';
 import { getPartnerServiceEventsList, removeFromPartnerServiceEventsList } from '@/api/servicePlansApi';
 import SvgIcon from '@/components/SvgIcon';
 import RemoveServiceEventDialogWindow from '@/effects/RemoveServiceEvent/RemoveServiceEventDialogWindow';
@@ -60,24 +77,15 @@ import RemoveServiceEventDialogWindow from '@/effects/RemoveServiceEvent/RemoveS
 import partnerEventsListViewStore from './partnerEventsListViewStore';
 
 export default {
+  components: {
+    SvgIcon,
+  },
   data() {
     return {
       serviceEventsList: [],
       documentsList: [],
       invoicesList: [],
-      document: {
-        documentId: null,
-        partnerUUID: null,
-        typeCode: 'DRIVING_LICENCE',
-        driverUUID: null,
-        filename: 'licence.pdf',
-        description: 'Prawo jazdy',
-        systemEntryDate: new Date(),
-      },
     };
-  },
-  components: {
-    SvgIcon,
   },
   computed: {
     ...mapGetters(['dataLoading']),
@@ -118,11 +126,9 @@ export default {
       this.toggleDataLoading(true);
       getPartnerDocuments().then((response) => {
         this.documentsList = response.data;
-        console.log(response);
       });
       getPartnerInvoices().then((response) => {
         this.invoicesList = response.data;
-        console.log(response);
       });
       this.toggleDataLoading(false);
     },
@@ -199,8 +205,8 @@ export default {
 }
 .car-event_list {
   border: 1px black solid;
-  margin-bottom: 8px;
-  padding: 10px;
+  margin-bottom: 10px;
+  padding: 14px;
   border-radius: 15px;
   box-shadow: 2px 2px;
 }

@@ -66,9 +66,9 @@
     "drop_off_comment": "Komentarz przy zwrocie pojazdu"
   },
   "AddCarEvent": {
-    "add_car_event": "Dodaj nowe zdarzenie samochodowe",
-    "add_car_event_success": "Poprawnie dodano nowy zdarzenie samochodowe.",
-    "car_make_event_failed": "Nie udało się pobrać dostępnych zdarzeń samochodowych."
+    "add_car_event": "Dodaj nowe zdarzenie operacyjne",
+    "add_car_event_success": "Poprawnie dodano nowe zdarzenie operacyjne.",
+    "car_make_event_failed": "Nie udało się pobrać dostępnych zdarzeń operacyjnych."
   },
   "ApiCredentials": {
     "cancel": "Anuluj usuwanie",
@@ -253,12 +253,16 @@
       "notify_period": "Powiadom przed datą",
       "vehicle": "Pojazd",
       "driver": "Kierowca",
-      "carEvents": "Zdarzenia samochodowe",
+      "carEvents": "Zdarzenia operacyjne",
       "serviceEvents": "Zdarzenia serwisowe",
       "date": "Data",
       "mileage": "Przebieg",
       "cost": "Koszt",
-      "eventType": "Rodzaj zdarzenia"
+      "eventType": "Rodzaj zdarzenia",
+      "document" : "Dokument",
+      "invoice" : "Faktura",
+      "documents" : "Dokumenty",
+      "invoices" : "Faktury"
     },
     "formValues": {
       "polish_citizenship": "polskie"
@@ -538,10 +542,10 @@
     "confirm_delete": "Czy na pewno chcesz zrealizować to zdarzenie serwisowe?"
   },
   "CarEvents": {
-    "carEvents_title": "Zdarzenie samochodowe",
+    "carEvents_title": "Zdarzenie operacyjne",
     "no_carEvents_placeholder": "Brak zdarzeń samochodowych",
-    "add_carEvent": "Dodaj zdarzenie samochodowe",
-    "edit_carEvent": "Edytuj zdarzenie samochodowe"
+    "add_carEvent": "Dodaj zdarzenie operacyjne",
+    "edit_carEvent": "Edytuj zdarzenie operacyjne"
   },
   "FREENOW_BONUS": "Bonus",
   "FREENOW_TRIPS": "Przejazdy",

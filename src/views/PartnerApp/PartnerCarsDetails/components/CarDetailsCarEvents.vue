@@ -16,6 +16,30 @@
       <el-table-column :label="$t('DocumentsWizard.formLabels.cost')" min-width="60px" align="center">
         <template slot-scope="scope">{{ scope.row.cost }}</template>
       </el-table-column>
+      <el-table-column :label="$t('DocumentsWizard.formLabels.document')" min-width="60px" align="center">
+        <template slot-scope="scope">
+          <input
+            id="document-upload"
+            type="file"
+            :accept="acceptedFiles"
+            hidden
+            @input="(e) => previewDocument(e, scope.row)"
+          />
+          <el-button type="primary" size="small" icon="el-icon-plus" circle @click="documentInputFile" />
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('DocumentsWizard.formLabels.invoice')" min-width="60px" align="center">
+        <template slot-scope="scope">
+          <input
+            id="invoice-upload"
+            type="file"
+            :accept="acceptedFiles"
+            hidden
+            @input="(e) => previewInvoice(e, scope.row)"
+          />
+          <el-button type="primary" size="small" icon="el-icon-plus" circle @click="invoiceInputFile" />
+        </template>
+      </el-table-column>
     </el-table>
     <div class="buttons">
       <el-button type="primary" style="margin-top: 15px" @click="showAddCarEventModal">
@@ -29,6 +53,7 @@
 import { mapActions, mapGetters } from 'vuex';
 
 import { getCarEventsForPartnerCarList } from '@/api/carEventsApi';
+import { uploadDocument, uploadInvoice } from '@/api/files';
 import AddCarEvent from '@/effects/AddCarEvent';
 
 export default {
@@ -43,6 +68,9 @@ export default {
   },
   computed: {
     ...mapGetters('carsDetailsStore', ['car', 'carId', 'reloadCarEvents']),
+    acceptedFiles() {
+      return '.pdf,.png,.jpeg';
+    },
     paginatedData() {
       const limit = this.pagination.limit;
       const currentPage = this.pagination.currentPage;
@@ -65,6 +93,40 @@ export default {
   methods: {
     ...mapActions('app', ['toggleDataLoading']),
     ...mapActions('carsDetailsStore', ['getViewInfo', 'setCarId', 'reloadedCarEvents']),
+    documentInputFile: function() {
+      document.getElementById('document-upload').click();
+    },
+    invoiceInputFile: function() {
+      document.getElementById('invoice-upload').click();
+    },
+    previewDocument(e, row) {
+      const uploadedFile = e?.target?.files || e;
+      const file = uploadedFile[0];
+      const formData = new FormData();
+      if (file.size <= 10 ** 6) {
+        formData.append('file', file);
+        formData.append('driverUUID', row.driverUUID);
+        uploadDocument(formData, row.carEventId).then((response) => {
+          if (response.ok) {
+            alert('Uploaded');
+          }
+        });
+      }
+    },
+    previewInvoice(e, row) {
+      const uploadedFile = e?.target?.files || e;
+      const file = uploadedFile[0];
+      const formData = new FormData();
+      if (file.size <= 10 ** 6) {
+        formData.append('file', file);
+        formData.append('driverUUID', row.driverUUID);
+        uploadInvoice(formData, row.carEventId).then((response) => {
+          if (response.ok) {
+            alert('Uploaded');
+          }
+        });
+      }
+    },
     showAddCarEventModal() {
       const car = this.car;
       this.$modalOn(AddCarEvent, { car: car });

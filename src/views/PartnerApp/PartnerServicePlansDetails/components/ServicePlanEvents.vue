@@ -16,16 +16,6 @@
       <el-table-column :label="$t('DocumentsWizard.formLabels.period')" min-width="60px" align="center">
         <template slot-scope="scope">{{ scope.row.period }}</template>
       </el-table-column>
-<!--      <el-table-column :label="$t('ServiceEvents.edit_serviceEvent')" min-width="40px" align="center">-->
-<!--        <el-button-->
-<!--          :type="editMode ? 'warning' : 'primary'"-->
-<!--          class="card-edit"-->
-<!--          size="small"-->
-<!--          icon="el-icon-edit"-->
-<!--          circle-->
-<!--          @click="toggleEdit()"-->
-<!--        />-->
-<!--      </el-table-column>-->
     </el-table>
 
     <div class="buttons">
@@ -76,4 +66,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.buttons {
+  margin-top: 10px;
+}
+</style>

@@ -1,8 +1,8 @@
 import request from './request.js';
 
-export const uploadDocument = (formData) =>
+export const uploadDocument = (formData, eventId) =>
   request({
-    url: '/api/documents',
+    url: `/api/documents/${eventId}`,
     method: 'post',
     data: formData,
     headers: {
@@ -17,9 +17,9 @@ export const getDocumentPreview = (documentId) =>
     method: 'get',
   });
 
-export const uploadInvoice = (formData) =>
+export const uploadInvoice = (formData, eventId) =>
   request({
-    url: '/api/invoices',
+    url: `/api/invoices/${eventId}`,
     method: 'post',
     data: formData,
     headers: {
