@@ -19,20 +19,10 @@
             <button disabled class="action-btn action-btn--username">
               {{ userName }}
             </button>
-<!--            <button v-if="userIsPartner()" class="action-btn" @click="goToPartnerProfile()">-->
-<!--              {{ $t('routes.partner_profile') }}-->
-<!--            </button>-->
-<!--            <button v-if="userIsPartner()" class="action-btn" @click="goToLicenses()">-->
-<!--              {{ $t('routes.licenses') }}-->
-<!--            </button>-->
-<!--            <button class="action-btn" @click="goToChangePassword()">-->
-<!--              {{ $t('change_password') }}-->
-<!--            </button>-->
             <button class="action-btn" @click="logout()">{{ $t('logout') }}</button>
           </div>
         </div>
       </div>
-      <LangSelect v-if="localeSelectVisible" />
     </div>
   </nav>
 </template>
@@ -40,11 +30,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import LangSelect from '@/components/LangSelect';
 import themeMixin from '@/mixins/themeMixin';
 import { hasUserPermission, userIsPartner } from '@/utils/keycloak';
 
-import { GERMAN_INSTANCE } from '../../../utils/instance';
 import AppHistory from './AppHistory';
 import NavbarRoutes from './NavbarRoutes';
 
@@ -52,12 +40,10 @@ export default {
   components: {
     NavbarRoutes,
     AppHistory,
-    LangSelect,
   },
   mixins: [themeMixin],
   computed: {
     ...mapGetters(['instance']),
-    ...mapGetters('driverAccount', ['referencedPartner']),
     routes() {
       return this.$router.options.routes
         .map((route) => {
@@ -65,7 +51,6 @@ export default {
           const { permission = [] } = route.meta;
           if (hasUserPermission(permission)) return route;
         })
-        .map(this.hidePartnersRoutes)
         .filter((el) => el);
     },
     userName() {
@@ -77,12 +62,6 @@ export default {
       const { partnerUuid, partnerDescription } = driverInfo;
       return Boolean(partnerUuid || partnerDescription);
     },
-    localeSelectVisible() {
-      return this.instance === GERMAN_INSTANCE || ['nubicab', 'demo'].includes(this.userName);
-    },
-    referencedPartnerCode() {
-      return this.referencedPartner?.code;
-    },
   },
   created() {
     document.addEventListener('click', this.clickDocument);
@@ -91,7 +70,6 @@ export default {
     document.removeEventListener('click', this.clickDocument);
   },
   methods: {
-    ...mapGetters(['getUserIsDriver', 'getUserIsPartner']),
     ...mapActions(['handleLogout']),
     userIsPartner: userIsPartner,
     toggleNav() {
@@ -108,23 +86,6 @@ export default {
     logout() {
       this.handleLogout();
       this.$keycloak.logoutFn();
-    },
-    goToPartnerProfile() {
-      this.$route.name !== 'PartnerProfile' && this.$router.push({ name: 'PartnerProfile' });
-      document.getElementById('user').click();
-    },
-    goToLicenses() {
-      this.$route.name !== 'LicensesPurchase' && this.$router.push({ name: 'LicensesPurchase' });
-      document.getElementById('user').click();
-    },
-    goToChangePassword() {
-      const accountUrl = this.$keycloak.createAccountUrl();
-      window.location.href = accountUrl.replace('/account', '/account/password');
-    },
-    hidePartnersRoutes(route) {
-      if (route && this.hasPartner && route.name == 'DriverPartnersList') return null;
-      else if (route && !this.hasPartner && route.name == 'DriverPartnerProfile') return null;
-      else return route;
     },
   },
 };

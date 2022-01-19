@@ -11,10 +11,8 @@ import Vue from 'vue';
 import VueCookies from 'vue-cookies';
 import VueSignature from 'vue-signature-pad';
 
-import * as filters from '@/filters';
 import { i18n } from '@/locales/i18n';
 import MobileMixin from '@/mixins/mobileMixin';
-import Amount from '@/plugins/amount';
 import ModalGateway from '@/plugins/modalGateway';
 
 import App from './App';
@@ -25,12 +23,7 @@ Vue.component('el-table-subcolumn', ElementUI.TableColumn); //register alias
 
 Vue.mixin(MobileMixin);
 
-Vue.use(Amount);
 Vue.use(ModalGateway);
-
-Object.keys(filters).forEach((key) => {
-  Vue.filter(key, filters[key]);
-});
 
 Vue.config.productionTip = false;
 

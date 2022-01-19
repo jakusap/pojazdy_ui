@@ -8,11 +8,6 @@
     </div>
     <slot name="table-footer"></slot>
   </section>
-  <!-- <DataWrapper>
-  <template slot="table-header"></template>
-  <template slot="table-body"></template>
-  <template slot="table-footer"></template>
-  </DataWrapper> -->
 </template>
 
 <script>

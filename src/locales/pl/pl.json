@@ -245,5 +245,6 @@
   "yes": "Tak",
   "drivers_history": "Historia kierowców",
   "edit_car": "Edytuj pojazd",
-  "edit_driver": "Edytuj kierowcę"
+  "edit_driver": "Edytuj kierowcę",
+  "save": "Zapisz"
 }

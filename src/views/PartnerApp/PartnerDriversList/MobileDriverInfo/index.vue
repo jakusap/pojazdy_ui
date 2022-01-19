@@ -3,10 +3,6 @@
     <template slot-scope="scope">
       <el-popover placement="right" trigger="click">
         <div class="">
-<!--          <div class="">-->
-<!--            {{ $t('SchemaInfo.contract_type') }}{{ `:` }}-->
-<!--            <SchemaTooltip :schema="scope.row.settlementSchema" />-->
-<!--          </div>-->
           <div class="">
             {{ $t('email_address') }}{{ `:` }}
             {{ scope.row.email ? scope.row.email : $t('dash') }}
@@ -25,12 +21,7 @@
 </template>
 
 <script>
-import SchemaTooltip from '@/components/SchemaTooltip';
-export default {
-  components: {
-    SchemaTooltip,
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped></style>

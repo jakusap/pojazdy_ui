@@ -13,7 +13,7 @@
         :cars-list="carsList.carUsers"
         :events-list="eventTypesList"
       />
-      <CarEventFeaturesFields :add-car-event-form="addCarEventForm"/>
+      <CarEventFeaturesFields :add-car-event-form="addCarEventForm" />
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button :disabled="dataLoading" @click="close = true">{{ $t('cancel') }}</el-button>
@@ -32,8 +32,8 @@ import { addCar, getCar, getCarMake, getCarsList } from '@/api/carsApi';
 import { getEventTypes } from '@/api/eventTypesApi';
 import ModalGateway from '@/modals/ModalGateway';
 
-import CarFormFields from './components/CarFormFields';
 import CarEventFeaturesFields from './components/CarEventFeaturesFields';
+import CarFormFields from './components/CarFormFields';
 
 export default {
   components: {
