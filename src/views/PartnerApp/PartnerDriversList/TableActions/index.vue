@@ -2,14 +2,6 @@
   <div class="table__actions">
     <div class="buttons">
       <el-button-group>
-<!--        <el-button-->
-<!--          :disabled="!selectedDrivers.length"-->
-<!--          class="drivers__action"-->
-<!--          type="info"-->
-<!--          @click="addCostTransaction(selectedDrivers)"-->
-<!--        >-->
-<!--          {{ $t('DriverDetails.add_cost') }}-->
-<!--        </el-button>-->
         <el-button type="primary" class="drivers__action" @click="showAddDriverModal()">
           {{ $t('Drivers.drivers_add') }}
         </el-button>
@@ -20,7 +12,6 @@
 </template>
 
 <script>
-import AddCost from '@/effects/AddCost';
 import AddDriver from '@/effects/AddDriver';
 
 export default {
@@ -32,9 +23,6 @@ export default {
   methods: {
     showAddDriverModal() {
       this.$modalOn(AddDriver);
-    },
-    addCostTransaction(drivers) {
-      this.$modalOn(AddCost, { drivers: drivers });
     },
   },
 };

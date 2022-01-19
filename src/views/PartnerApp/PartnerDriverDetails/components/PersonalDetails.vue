@@ -43,29 +43,12 @@
             <el-input v-if="editMode" v-model="personalDetails.phoneNumber"></el-input>
           </el-form-item>
         </div>
-<!--        <div>-->
-<!--          <i v-if="!editMode" class="el-icon-open" />-->
-<!--          <span v-if="driver.active && !editMode">{{ $t('Drivers.active_driver') }}</span>-->
-<!--          <span v-if="!driver.active && !editMode">{{ $t('Drivers.inactive_driver') }}</span>-->
-<!--          <el-form-item prop="active">-->
-<!--            <el-switch-->
-<!--              v-if="editMode"-->
-<!--              v-model="personalDetails.active"-->
-<!--              :active-text="$t('Drivers.active_driver')"-->
-<!--              :inactive-text="$t('Drivers.inactive_driver')"-->
-<!--            >-->
-<!--            </el-switch>-->
-<!--          </el-form-item>-->
-<!--        </div>-->
       </div>
       <div v-if="editMode" class="form-buttons">
         <el-button type="primary" size="small" @click="submit()">{{ $t('save') }}</el-button>
         <el-button size="small" @click="toggleEdit()">{{ $t('cancel') }}</el-button>
       </div>
     </el-form>
-<!--    <div v-if="!editMode" class="merge-button">-->
-<!--      <el-button type="primary" @click="startDriversMerge()">{{ $t('merge_drivers') }}</el-button>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -73,7 +56,6 @@
 import { mapActions, mapGetters } from 'vuex';
 
 import { editDriver } from '@/api/driversApi';
-import MergeDrivers from '@/effects/MergeDrivers';
 
 export default {
   data() {
@@ -105,9 +87,6 @@ export default {
         this.personalDetails = { firstName, lastName, email, phoneNumber, active };
       }
       this.editMode = !this.editMode;
-    },
-    startDriversMerge() {
-      this.$modalOn(MergeDrivers, { driver: this.driver });
     },
 
     submit() {

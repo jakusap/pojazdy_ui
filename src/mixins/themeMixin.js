@@ -1,24 +1,9 @@
-import { mapGetters } from 'vuex';
-
-import { userIsDriver } from '@/utils/keycloak';
-
 export default {
   data() {
     return {
       globalThemeClass: '',
       localThemeClass: '',
     };
-  },
-  computed: {
-    ...mapGetters('driverAccount', ['getLoggedDriverInfo']),
-    ...mapGetters('partners', ['getPartnersList']),
-    ...mapGetters('driverAccount', ['referencedPartner']),
-    isDriver() {
-      return userIsDriver();
-    },
-    selectedPartnerCode() {
-      return this.findSelectedParter();
-    },
   },
   watch: {
     getLoggedDriverInfo: {
@@ -41,7 +26,7 @@ export default {
     this.setLocalClass();
   },
   methods: {
-    findSelectedParter() {
+    findSelectedPartner() {
       const partners = this.getPartnersList;
       const partnerUuid = this.getLoggedDriverInfo?.partnerUuid || this.referencedPartner?.uuid || null;
 
@@ -50,12 +35,12 @@ export default {
       } else return null;
     },
     setGlobalClass() {
-      const partnerCode = this.findSelectedParter();
+      const partnerCode = this.findSelectedPartner();
 
       if (partnerCode) this.createGlobalThemeClass(partnerCode);
     },
     setLocalClass() {
-      const partnerCode = this.findSelectedParter();
+      const partnerCode = this.findSelectedPartner();
 
       if (partnerCode) this.createLocalThemeClass(partnerCode);
     },

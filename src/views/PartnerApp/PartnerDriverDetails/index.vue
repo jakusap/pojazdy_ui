@@ -1,49 +1,20 @@
 <template>
   <div v-loading="viewLoading" class="driver-details">
-<!--    <el-row :gutter="16">-->
-<!--      <el-col :sm="12">-->
     <div>
       <PersonalDetails />
-<!--          <ProfileStatus />-->
     </div>
-<!--      </el-col>-->
-<!--      <el-col v-if="!viewLoading" :sm="12">-->
-<!--        <Identifiers />-->
-<!--        <SchemaInfo />-->
-<!--      </el-col>-->
-<!--    </el-row>-->
-<!--    <el-row> </el-row>-->
-<!--    <el-row>-->
-<!--      <SentMessages />-->
-<!--    </el-row>-->
-<!--    <el-row class="settlements">-->
-<!--      <Settlements />-->
-<!--    </el-row>-->
-<!--    <el-row> <SignedContracts /> </el-row>-->
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import Identifiers from './components/Identifiers';
 import PersonalDetails from './components/PersonalDetails';
-import ProfileStatus from './components/ProfileStatus';
-import SchemaInfo from './components/SchemaInfo';
-import SentMessages from './components/SentMessages';
-import Settlements from './components/Settlements';
-import SignedContracts from './components/SignedContracts';
 import driverDetailsStore from './store/driverDetailsStore';
 
 export default {
   components: {
-    SignedContracts,
-    Settlements,
     PersonalDetails,
-    Identifiers,
-    ProfileStatus,
-    SchemaInfo,
-    SentMessages,
   },
   props: {
     driverUUID: {

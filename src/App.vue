@@ -17,7 +17,7 @@ export default {
   name: 'App',
   components: { ThemeProvider },
   computed: {
-    ...mapGetters('partnerProfile', ['settlementsLimits', 'profileInfo']),
+    ...mapGetters('partnerProfile', ['profileInfo']),
     ...mapGetters('app', ['storedLocale']),
     ...mapGetters(['instance']),
   },
@@ -49,13 +49,6 @@ export default {
     },
     async handlePartnerLogin() {
       await this.preloadPartnerData();
-      const remainingSettlements = this.settlementsLimits.limit - this.settlementsLimits.usage;
-      this.$notify({
-        title: this.$t('welcome') + `, ${this.profileInfo.name}`,
-        message: this.$t('remaining_settlements') + remainingSettlements,
-        type: remainingSettlements ? 'success' : 'warning',
-        duration: '6000',
-      });
     },
   },
 };

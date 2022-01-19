@@ -1,7 +1,6 @@
 <template>
   <div :class="['themeProvider', globalThemeClass]">
-    <template v-if="isDriver && (getLoggedDriverInfo === null || !getPartnersList.length)" />
-    <slot v-else />
+    <slot />
   </div>
 </template>
 

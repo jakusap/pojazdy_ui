@@ -20,22 +20,9 @@ export const addDriver = (driver) =>
     data: driver,
   });
 
-export const getMessagesInfo = (driverUUID) =>
-  request({
-    url: `/api/settlement-notifications`,
-    method: 'get',
-    params: { driverUuid: driverUUID },
-  });
-
 export const editDriver = (driver) =>
   request({
     url: `/api/drivers/${driver.driverUUID}`,
     method: 'put',
     data: driver,
-  });
-
-export const putMergeDrivers = (correctDriverUUID, wrongDriverUUID) =>
-  request({
-    url: `/api/drivers/${correctDriverUUID}/merge/${wrongDriverUUID}`,
-    method: 'put',
   });

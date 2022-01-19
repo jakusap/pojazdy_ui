@@ -3,7 +3,6 @@ import Router from 'vue-router';
 
 import RoleRedirect from '@/views/shared/RoleRedirect';
 
-import driverRoutes from './driver';
 import partnerRoutes from './partner';
 
 Vue.use(Router);
@@ -31,22 +30,12 @@ export const constantRoutes = [
     component: RoleRedirect,
   },
 
-  {
-    path: '/driver-summary/:tokenUUID',
-    name: 'DriverSummary',
-    component: () => import(/* webpackChunkName: "common" */ '@/views/common/DriverSummary'),
-    hidden: true,
-    meta: { transitionName: 'fade-transform', public: true },
-    props: changeSummaryProps,
-  },
-
   { path: '*', redirect: '/404' },
 ];
 
 export function changeSummaryProps(route) {
   return {
     tokenUUID: route.params.tokenUUID,
-    driverUUID: route.params.driverUUID,
   };
 }
 
@@ -55,7 +44,7 @@ const createRouter = () =>
     mode: 'history',
     base: process.env.BASE_URL,
     scrollBehavior: () => ({ y: 0 }),
-    routes: [...constantRoutes, ...driverRoutes, ...partnerRoutes],
+    routes: [...constantRoutes, ...partnerRoutes],
   });
 
 const router = createRouter();

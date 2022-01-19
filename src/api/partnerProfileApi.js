@@ -14,9 +14,3 @@ export const putPartnerProfile = (profile) => {
     data: profile,
   });
 };
-
-export const getSettlementsLimits = () =>
-  request({
-    url: `/api/settlements/limits`,
-    method: 'get',
-  });

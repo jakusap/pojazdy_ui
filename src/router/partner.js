@@ -1,7 +1,6 @@
 import Layout from '@/layout';
 
 import { USER_ROLE_PARTNER } from '../utils/keycloak';
-import { changeSummaryProps } from '.';
 
 const partnerRoutes = [
   {
@@ -21,30 +20,11 @@ const partnerRoutes = [
         },
       },
       {
-        path: '/drivers-profiles',
-        name: 'DriversProfiles',
-        props: true,
-        component: () => import(/* webpackChunkName: "partner" */ '@/views/PartnerApp/PartnerDriversProfiles'),
-        meta: {
-          title: 'routes.drivers_profiles',
-          icon: 'peoples',
-          transitionName: 'fade-transform',
-          permission: [USER_ROLE_PARTNER],
-        },
-      },
-      {
         path: '/drivers/:driverUUID',
         name: 'DriverDetails',
         component: () => import(/* webpackChunkName: "partner" */ '@/views/PartnerApp/PartnerDriverDetails'),
         props: true,
         meta: { title: 'routes.driver_details', transitionName: 'fade-transform', permission: [USER_ROLE_PARTNER] },
-      },
-      {
-        path: '/drivers/sent-summary/:tokenUUID/:driverUUID',
-        name: 'DriverToken',
-        component: () => import(/* webpackChunkName: "common" */ '@/views/common/DriverSummary'),
-        props: changeSummaryProps,
-        meta: { title: 'routes.transactions_token', transitionName: 'fade-transform', permission: [USER_ROLE_PARTNER] },
       },
     ],
   },
@@ -138,12 +118,5 @@ const partnerRoutes = [
     ],
   },
 ];
-
-function changeTransactionProps(route) {
-  return {
-    driverUUID: route.params.driverUUID,
-    settlementUUID: route.params.settlementUUID,
-  };
-}
 
 export default partnerRoutes;

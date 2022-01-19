@@ -16,11 +16,6 @@ export default {
           params: {},
           meta: { title: this.$t('routes.my_drivers'), icon: 'peoples' },
         },
-        // {
-        //   name: 'DriversProfiles',
-        //   params: {},
-        //   meta: { title: this.$t('routes.drivers_profiles'), icon: 'peoples' },
-        // },
       ];
     },
   },

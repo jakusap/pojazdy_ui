@@ -9,9 +9,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-
-import { userIsDriver, userIsPartner } from '@/utils/keycloak';
+import { userIsPartner } from '@/utils/keycloak';
 
 export default {
   name: 'RoleRedirect',
@@ -19,14 +17,9 @@ export default {
     this.redirectUser();
   },
   methods: {
-    ...mapGetters('driverAccount', ['getLoggedDriverInfo']),
-    ...mapActions('driverAccount', ['fetchLoggedDriverInfo']),
     redirectUser: async function() {
       if (userIsPartner()) {
         this.$router.replace({ name: 'PartnerHomePage' });
-      } else if (userIsDriver()) {
-        await this.fetchLoggedDriverInfo();
-        this.getLoggedDriverInfo() && this.$router.replace({ name: 'DriverSettlements' });
       } else {
         this.$router.push({ name: '403' });
       }

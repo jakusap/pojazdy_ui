@@ -1,11 +1,11 @@
 <template>
   <div v-if="!mobile" class="el-row">
-    <el-form-item :label="$t('DriverInvoices.description')" prop="description">
+    <el-form-item :label="$t('AddCar.description')" prop="description">
       <el-input v-model="addCarForm.description" type="textarea" class="new-transaction__input--large" />
     </el-form-item>
   </div>
   <div v-else-if="mobile" class="mobile-div">
-    <el-form-item :label="$t('DriverInvoices.description')" prop="description">
+    <el-form-item :label="$t('AddCar.description')" prop="description">
       <el-input v-model="addCarForm.description" type="textarea" class="new-transaction__input--large" />
     </el-form-item>
   </div>

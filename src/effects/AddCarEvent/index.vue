@@ -65,7 +65,7 @@ export default {
         cost: null,
       },
       rules: {
-        eventCode: [{ required: true, message: this.$t('validation.event_type_reuqired') }],
+        eventCode: [{ required: true, message: this.$t('validation.event_type_required') }],
         dateTime: [{ required: true, message: this.$t('validation.date_required') }],
         mileage: [{ required: true, message: this.$t('validation.mileage_required') }],
         carUserId: [{ required: true, message: this.$t('validation.driver_required') }],

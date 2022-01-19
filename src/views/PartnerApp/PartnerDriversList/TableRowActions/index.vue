@@ -23,9 +23,6 @@ export default {
     showDriverDetails(driver) {
       this.$router.push({ name: 'DriverDetails', params: driver });
     },
-    goToDriverLinks(driver) {
-      this.$router.push({ name: 'DriversProfiles', params: driver });
-    },
   },
 };
 </script>

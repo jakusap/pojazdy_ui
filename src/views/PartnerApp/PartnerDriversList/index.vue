@@ -17,8 +17,6 @@
 
           <TableRowActions />
 
-<!--          <ProfileStatus />-->
-
           <el-table-column :label="$t('driver')" min-width="120px" align="center">
             <template slot-scope="scope"> {{ scope.row.lastName }} {{ scope.row.firstName }} </template>
           </el-table-column>
@@ -35,16 +33,6 @@
               {{ scope.row.phoneNumber ? scope.row.phoneNumber : $t('dash') }}
             </template>
           </el-table-column>
-<!--          <el-table-column-->
-<!--            v-if="!mobile"-->
-<!--            :label="$t('SchemaInfo.contract_type')"-->
-<!--            align="center"-->
-<!--            prop="settlementSchemaNumber"-->
-<!--          >-->
-<!--            <template slot-scope="scope">-->
-<!--              <SchemaTooltip :schema="scope.row.settlementSchema" />-->
-<!--            </template>-->
-<!--          </el-table-column>-->
         </el-table>
 
         <TableActions :selected-drivers="selectedDrivers">
@@ -67,11 +55,9 @@ import { mapActions, mapGetters } from 'vuex';
 import { getDriversList } from '@/api/driversApi';
 import DataWrapper from '@/components/DataWrapper';
 import Pagination from '@/components/Pagination';
-import SchemaTooltip from '@/components/SchemaTooltip';
 
 import driversListViewStore from './driversListViewStore';
 import MobileDriverInfo from './MobileDriverInfo';
-import ProfileStatus from './ProfileStatus';
 import TableActions from './TableActions';
 import TableHeader from './TableHeader';
 import TableRowActions from './TableRowActions';
@@ -79,10 +65,8 @@ import TableRowActions from './TableRowActions';
 export default {
   components: {
     DataWrapper,
-    // SchemaTooltip,
     Pagination,
     TableHeader,
-    // ProfileStatus,
     TableRowActions,
     MobileDriverInfo,
     TableActions,
