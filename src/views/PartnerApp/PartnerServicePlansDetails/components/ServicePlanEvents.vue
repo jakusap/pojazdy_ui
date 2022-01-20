@@ -1,7 +1,7 @@
 <template>
   <div class="event-list">
     <el-table :data="tableData" :empty-text="$t('ServiceEvents.no_serviceEvents_placeholder')">
-      <el-table-column :label="$t('DocumentsWizard.formLabels.servicePlan_name')" min-width="60px" align="center">
+      <el-table-column :label="$t('ServiceEvents.serviceEvents_title')" min-width="60px" align="center">
         <template slot-scope="scope">{{ scope.row.comments }}</template>
       </el-table-column>
       <el-table-column :label="$t('DocumentsWizard.formLabels.notify_mileage')" min-width="60px" align="center">
